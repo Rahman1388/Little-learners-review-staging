@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<style id="lla-staging-style">.lla-staging-flag{box-sizing:border-box;position:relative;z-index:12;display:block;background:#fff4d9;color:#4b3005;border:2px solid #a16c1d;border-radius:0;padding:11px 16px;font:700 14px/1.5 system-ui,-apple-system,Arial,sans-serif;text-align:center;overflow-wrap:anywhere}.lla-staging-flag a{color:#714210;text-decoration:underline}.lla-staging-flag a:focus-visible{outline:3px solid #8a1538;outline-offset:3px}</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#eaf7ff">
+<meta name="description" content="Original adult-guided word-family pathway for Grade 2 English Modules 2–5: see, hear, blend, read, spell, apply and review. Draft supplementary activity.">
+<link rel="icon" type="image/svg+xml" href="./icon.svg">
+<title>Grade 2 Word Family Adventure | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#17395d;background:#edf7ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(150deg,#dcefff,#fff4d4 60%,#ecedff)}
+main{max-width:900px;margin:0 auto;padding:15px 14px 60px}
+h1{font-size:clamp(27px,6vw,39px);line-height:1.25;margin:8px 0}
+h2{font-size:clamp(23px,5vw,29px)}
+a,button,input{font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;padding:13px 17px;min-height:48px;align-items:center;background:white;border-radius:16px;color:#134e78;font-weight:850;text-decoration:none}
+.hero,.panel{margin:16px 0;border:3px solid white;background:#ffffffee;border-radius:23px;padding:clamp(16px,3vw,25px);box-shadow:0 4px 0 #b9d6e7}
+.hero{text-align:center;background:linear-gradient(110deg,#fff0b5,#fff,#d9efff)}
+.hero p,.panel p{line-height:1.55}
+.eyebrow{font-weight:800;color:#8a1538;font-size:14px}
+.ar{direction:rtl;text-align:right;font-size:17px}
+.note{color:#3d5c75;font-size:14px}
+.family-buttons,.step-buttons{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+.step-buttons{grid-template-columns:repeat(auto-fit,minmax(115px,1fr))}
+.family-buttons button,.step-buttons button,.choice,.primary{min-height:50px;border:2px solid #a8cee0;border-radius:14px;padding:12px;background:white;color:#174b70;font-weight:800;cursor:pointer}
+.family-buttons button[aria-pressed=true],.step-buttons button[aria-pressed=true]{background:#155c90;border-color:#155c90;color:white}
+.step-buttons button.done:not([aria-pressed=true]){background:#e4f8ea;border-color:#8cca9d}
+.step-buttons button span{display:block;font-size:12px;margin-top:3px}
+.lesson{border:2px solid #b8dce8;border-radius:18px;background:#f5fbff;padding:clamp(13px,3vw,22px);margin-top:20px;min-height:240px}
+#stepHeading{margin:5px 0 15px}
+.visual{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap;background:white;border:2px solid #d4e7ed;border-radius:18px;padding:18px;margin:15px 0}
+.visual .picture{font-size:clamp(52px,9vw,76px);line-height:1.3}
+.picture-clue{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:105px;max-width:195px}
+.picture-caption{text-align:center;font-size:14px;line-height:1.35;font-weight:700;color:#315777;overflow-wrap:anywhere}
+.visual .word{font-size:clamp(30px,7vw,45px);font-weight:900;letter-spacing:.04em;white-space:nowrap;max-width:100%}
+.word-start{color:#174b70}
+.word-rime{display:inline-block;color:#8a1538;background:#ffe7ab;border:2px solid #e4b75c;border-radius:11px;padding:2px 6px;margin-inline-start:2px;text-decoration:underline;text-underline-offset:.16em}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.rime-key{border:2px dashed #c9ae64;border-radius:14px;background:#fff9e9;padding:10px 13px;font-weight:850}
+.family-progress{font-weight:800;color:#16523c;background:#e6f8ec;border:2px solid #9bceb0;border-radius:14px;padding:12px;margin-top:14px}
+.next-step{display:block;min-height:51px;margin-top:20px;border:3px solid #a45b17;border-radius:16px;background:#ffdc85;color:#463018;font-weight:900;font-size:18px;padding:12px 19px;cursor:pointer}
+.next-step:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.skip-link{position:absolute;left:12px;top:-120px;z-index:5;padding:14px;background:#fff;border:3px solid #8a1538;border-radius:12px;font-weight:850;color:#17395d}
+.skip-link:focus{top:8px}
+.display-controls{display:flex;gap:13px;align-items:center;flex-wrap:wrap;margin:15px 0}
+.display-controls button{min-height:50px;border:2px solid #155c90;border-radius:13px;background:#fff;color:#155c90;padding:12px 17px;font-weight:850;cursor:pointer}
+.display-controls button[aria-pressed="true"]{background:#155c90;color:#fff}
+[data-large-letters="true"] .visual .word{font-size:clamp(36px,8.3vw,55px)}
+[data-large-letters="true"] .chunk{font-size:clamp(28px,6vw,37px)}
+.step-buttons button .stage-ar{font-family:Tahoma,Arial,sans-serif;font-size:15px;line-height:1.5}
+@media(max-width:285px){.family-buttons,.step-buttons{grid-template-columns:minmax(0,1fr)!important}.visual .word{white-space:normal;overflow-wrap:anywhere}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media(max-width:360px){.visual{gap:7px;padding:12px}.visual .word{font-size:clamp(27px,7vw,33px)}.word-rime{padding:1px 3px}.chunk{font-size:24px;padding:11px 12px}}
+.chunks{display:flex;justify-content:center;gap:9px;align-items:center;flex-wrap:wrap;margin:18px auto}
+.chunk{padding:14px 19px;border:2px solid #8fbdd4;background:#fff;border-radius:16px;font-size:28px;font-weight:900}
+.result{background:#e1f5e7;border-color:#95caa3}
+.choice-list{display:grid;gap:10px;grid-template-columns:1fr;margin:12px 0}
+.choice{text-align:left}
+.choice.incorrect{background:#ffebe6;border-color:#b84a37}
+.choice.correct{background:#d9f6e2;border-color:#16804d}
+.choice:disabled{cursor:default}
+.primary{background:#176b9d;border-color:#176b9d;color:white;margin-top:12px}
+details{background:#fff;border:2px solid #b3d8df;border-radius:14px;margin:14px 0;padding:7px 12px}
+details summary{display:flex;align-items:center;min-height:48px;cursor:pointer;font-weight:850}
+fieldset{border:0;padding:0;margin:0}
+legend,label{font-weight:800}
+.spell-input{display:block;padding:14px;border:2px solid #78afc8;border-radius:12px;margin:14px 0;width:100%;max-width:430px;min-height:52px;font-size:22px}
+.feedback{font-weight:800;min-height:24px}
+.feedback.retry{color:#993a24}.feedback.good{color:#17683b}
+.status{font-size:16px;font-weight:850}
+progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
+[hidden]{display:none!important}
+@media(max-width:390px){.step-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<aside id="stagingNotice" role="note" aria-label="Adult development preview" class="lla-staging-flag"><strong>🧪 Adult review only</strong> • Unapproved lessons and proposed branding • Not a government or school service • <a href="./index.html">Review hub</a></aside>
+<a class="skip-link" href="#stepHeading">Skip to the current learning stage</a><main>
+<a id="returnToModule" class="back" href="./grade2-four-skills.html">← Back to Grade 2 English</a>
+<header class="hero">
+<div class="eyebrow">🔤 GRADE 2 • MODULES 2–5 • OPTIONAL ADULT-GUIDED PHONICS</div>
+<h1>Word Family Adventure <span lang="ar" dir="rtl">مغامرة عائلات الكلمات</span></h1>
+<p>👀 See → 👂 Hear → 🧩 Blend → 📖 Read → ✏️ Spell → 🌱 Apply → ⭐ Review</p>
+<p lang="ar" dir="rtl">أنشطة إضافية بإشراف ولي الأمر. لا تُعد اختبارًا للنطق أو إتقان القراءة.</p>
+<div id="progressText" role="status" aria-live="polite">0 / 56 practice steps completed in this visit</div>
+<progress id="progressBar" max="56" value="0" aria-label="Optional practice steps this visit"></progress>
+</header>
+<section class="panel" aria-labelledby="familyTitle">
+<h2 id="familyTitle">Choose a word family • اختر عائلة الكلمات</h2>
+<p class="note">Choose a family and follow the seven stages. The highlighted and underlined letters show the same written ending; an adult models the sounds.</p>
+<div class="display-controls" role="group" aria-label="Reading display settings">
+<button id="largeLetters" type="button" aria-pressed="false">Aa • Larger letters</button>
+<p class="note">This changes the letters on this page only. It does not save a setting or assess reading.</p>
+</div>
+<div id="familyButtons" class="family-buttons" role="group" aria-label="Word family selection"></div>
+<p id="familyProgress" class="family-progress">This family: 0 / 7 guided stages tried this visit • Not a test score</p>
+<h2>Learning journey • رحلة التعلم</h2>
+<div id="stepButtons" class="step-buttons" role="group" aria-label="Seven practice stages"></div>
+<div class="lesson" aria-labelledby="stepHeading">
+<h2 id="stepHeading" tabindex="-1">See</h2>
+<div id="stepContent"></div>
+<p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+</div>
+</section>
+<aside class="panel">
+<h2>For adults • إرشادات للأهل</h2>
+<p><a id="reviewLink" class="back" href="./grade2-educator-review.html?family=ing">📋 Educator review: prepare anonymous feedback for this word family</a></p>
+<p>This is an <strong>original supplementary draft</strong> referencing the Qatar Grade 2 English Semester 1 2026–2027 overview (p.17): <strong>Module 2</strong> word families <strong>-ing</strong> and <strong>-and</strong>, and <strong>Module 3</strong> word families <strong>-all</strong> and <strong>-ack</strong>, and <strong>Module 4</strong> word families <strong>-ain</strong> and <strong>-ink</strong>, and <strong>Module 5</strong> word families <strong>-ay</strong> and <strong>-ick</strong>.</p>
+<p><strong>Display accessibility:</strong> The Larger letters button changes the practice letters without recording preferences. Buttons show their selected state, and the page includes a skip link and optional Arabic stage names. These are draft aids pending iPhone VoiceOver and Arabic educator review.</p>
+<p><strong>Visual learning:</strong> The yellow, underlined word ending is an on-screen spelling clue. It does not assess what a learner hears or pronounces. A new optional “Next” button appears after each guided stage is practised; children can still choose stages freely.</p>
+<p>Read the adult script aloud at a comfortable pace and let the learner listen without seeing your words. In blending, guide the learner through the starting sound and shared ending; when practising -ack, <strong>bl</strong> and <strong>sn</strong> are beginning consonant blends, while the -ain word <strong>train</strong> starts with the <strong>tr</strong> blend and the -ay word <strong>play</strong> begins with <strong>pl</strong>. The on-screen response checks spelling or recognition only; it does <strong>not</strong> assess oral blending, pronunciation, comprehension mastery or fluency.</p>
+<p>Keep the child supported and do not rush. Some children will need easier examples or multisensory support; please flag unsuitable words for educator review. The Arabic heading and directions need native-language educator approval before wider release.</p>
+<p class="note"><strong>Privacy:</strong> No accounts, ads, microphone, child names, tracking, typed-answer storage, or paid audio/API services. The 56 step indicators exist only in this open page, are unscored, and reset after refresh; the Grade 2 app's existing 20 progress flags are untouched. Official school endorsement and teacher validation are not claimed.</p>
+</aside>
+<script src="./grade2-phonics-pathway.js"></script>
+</main></body></html>

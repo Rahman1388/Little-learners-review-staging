@@ -1,0 +1,26 @@
+{
+  "purpose": "Adult educator and parent review-only preview, not ministry approved or publicly deployed",
+  "builtFrom": "feature/grade2-four-skills-pilot-20261016",
+  "files": [
+    "EDUCATOR-REVIEW-GUIDE.md",
+    "START-HERE.md",
+    "academy-brand-review.html",
+    "academy-brand-review.js",
+    "grade2-educator-review.html",
+    "grade2-educator-review.js",
+    "grade2-four-skills-data.js",
+    "grade2-four-skills.html",
+    "grade2-four-skills.js",
+    "grade2-phonics-pathway.html",
+    "grade2-phonics-pathway.js",
+    "icon.svg",
+    "index.html",
+    "school-live-news.json",
+    "school-updates-data.js",
+    "school-updates.html",
+    "school-updates.js"
+  ],
+  "automaticSubmission": false,
+  "adultReadAudioOnly": true,
+  "notes": "Adult source-directory links may open official external pages when intentionally clicked. No live news updater or student upload. Not an approved school product."
+}

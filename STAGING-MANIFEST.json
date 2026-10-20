@@ -1,0 +1,30 @@
+{
+  "developmentOnly": true,
+  "approvedToDeploy": true,
+  "ownerApprovedPublicStaging": true,
+  "isAccessRestricted": false,
+  "note": "Owner approved a separate PUBLIC GitHub Pages staging preview for adult reviewers. It is not private, curriculum-certified or Ministry approved. noindex/robots.txt do not restrict access.",
+  "entries": [
+    "EDUCATOR-REVIEW-GUIDE.md",
+    "START-HERE.md",
+    "academy-brand-review.html",
+    "academy-brand-review.js",
+    "grade2-educator-review.html",
+    "grade2-educator-review.js",
+    "grade2-four-skills-data.js",
+    "grade2-four-skills.html",
+    "grade2-four-skills.js",
+    "grade2-phonics-pathway.html",
+    "grade2-phonics-pathway.js",
+    "icon.svg",
+    "index.html",
+    "school-live-news.json",
+    "school-updates-data.js",
+    "school-updates.html",
+    "school-updates.js"
+  ],
+  "htmlPages": 6,
+  "noStudentData": true,
+  "news": "Seven school-directory source entries and an uninitialized QNA snapshot only; NOT real-time news or safety alerts",
+  "review": "Teacher, Arabic specialist and real iPhone Safari/VoiceOver sign-offs pending"
+}
