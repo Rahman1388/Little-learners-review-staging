@@ -13,6 +13,15 @@ The project owner reported **five of five sections successfully tested**, with *
 ## New milestone
 Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repository and linked it from `index.html`. This adult-only HTML sheet is printable with Ctrl+P or the browser's Print/Save as PDF. It is not an automatic form uploader, and checks stay transient in the browser. Reviewers should print/annotate a copy or use the existing review form for lesson-specific notes, with no pupil-identifying information.
 
+## 24 October 2026 — Visual phonics demo added (staging only)
+- New accessible responsive page: `visual-phonics-demo.html` + `visual-phonics-demo.js`.
+- Three teacher-led visual sample words: `ring`, `sing`, `hand`. Four steps (Look, Blend, Find, Celebrate), two colored letter segments, bilingual instructions and a simple `-ing` / `-and` quiz.
+- Optional **device** synthesized English normal/slow and Arabic guidance; no claims of validated child voice quality.
+- Added review instructions `VISUAL-PHONICS-REVIEW-STEPS.md`. Cross-checked all JS-referenced UI IDs and parsed script without syntax errors. Real-device and educator checks are **pending**.
+- No app account, child profile, user tracking, automatic data submission, or stored activity progress.
+- This is a short interactive visual sequence, **not a video** or teacher-approved lesson; the colors are cues, not a scientifically proven memory treatment.
+- Changes were confined to the separate publicly accessible adult staging repo. Existing source Academy production branch was not updated.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
