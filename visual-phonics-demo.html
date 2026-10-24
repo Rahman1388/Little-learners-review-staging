@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="theme-color" content="#e8f5ff"><meta name="description" content="Adult-review bilingual visual phonics prototype. Interactive word families, optional device-generated speech, no pupil accounts.">
+<title>Visual Phonics Mini-Lesson | Academy Adult Preview</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183e59;background:#e9f6ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(155deg,#e4f4ff,#fff4d7 58%,#e9f5ff)}
+main{max-width:840px;margin:0 auto;padding:15px 14px 70px}h1{font-size:clamp(27px,6vw,39px);margin:9px 0}h2{font-size:clamp(21px,4vw,27px)}p{line-height:1.55}.hero,.panel{background:#fff;border:2px solid #bed6e5;border-radius:22px;padding:clamp(16px,3vw,25px);margin:15px 0;box-shadow:0 3px 0 #cadce4}
+.hero{background:linear-gradient(105deg,#fff0b8,#fff,#daf1ff)}.eyebrow{color:#8a1538;font-weight:850}.flag{background:#fff1d5;border-bottom:2px solid #a3772d;padding:12px;text-align:center;font-size:14px;font-weight:750}.arabic{direction:rtl;text-align:right;line-height:1.7}
+button,select,a{font:inherit}button,select{min-height:48px}button{cursor:pointer;padding:11px 14px;border-radius:13px;border:2px solid #12638e;background:#156d9c;color:#fff;font-weight:760}button.secondary{background:#fff;color:#145c83}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,select:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}.nav,.actions,.voiceButtons{display:flex;gap:10px;flex-wrap:wrap}.nav a{display:inline-flex;align-items:center;border:2px solid #9ec8d9;border-radius:12px;padding:10px;background:#fff;color:#155d88;text-decoration:none;font-weight:750;min-height:46px}
+label{display:block;font-weight:800;margin-bottom:7px}select{padding:9px 12px;background:white;color:#173a50;border:2px solid #85b4cb;border-radius:12px;width:100%;max-width:330px}
+.wordArt{display:grid;grid-template-columns:minmax(110px,190px) 1fr;gap:18px;align-items:center;padding:16px;margin:17px 0;border:3px solid #c6e4e4;border-radius:20px;background:#f0fcff}
+.picture{text-align:center}.pictureIcon{font-size:clamp(62px,12vw,112px);display:block;line-height:1.35}.pictureLabel{font-weight:700}.wordDisplay{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;font-size:clamp(47px,12vw,84px);letter-spacing:.02em;font-weight:900}.startSound{color:#8a1538}.wordFamily{color:#145c8b;text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:7px}.legend{font-size:14px;text-align:center}.legend strong{color:#8a1538}.progress{font-size:14px;font-weight:800;color:#315f78}.instruction{background:#f6f9ff;border-left:5px solid #8a1538;border-radius:12px;padding:13px 16px;margin:15px 0}.instruction p{margin:7px 0}
+.quiz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.quiz button{background:#fff;color:#145c83;font-size:21px;border:2px solid #69adc9}.quiz button[aria-pressed="true"]{background:#e7f4ff;outline:3px solid #8a1538}.feedback{min-height:28px;font-weight:750}.voiceButtons{margin:10px 0}.voiceButtons button{font-size:14px;background:#fff;color:#145a84}.status{min-height:30px;color:#345f76;font-size:14px}.note{background:#fff7e7;border:2px solid #c7ab74;border-radius:13px;padding:12px}.complete{font-size:23px;font-weight:800;color:#225f45}
+@media(max-width:500px){.wordArt{grid-template-columns:1fr;gap:4px}.pictureIcon{font-size:71px}.quiz{grid-template-columns:1fr}.actions button{flex:1}}
+@media(prefers-reduced-motion:no-preference){.pictureIcon{transition:transform .3s ease}.wordArt:focus-within .pictureIcon{transform:scale(1.035)}}
+</style>
+<script defer src="./visual-phonics-demo.js"></script>
+</head>
+<body>
+<aside class="flag" role="note">🧪 ADULT REVIEW ONLY • Independent, unapproved educational prototype • Not a school or Ministry service</aside>
+<main>
+<nav class="nav" aria-label="Preview navigation"><a href="./index.html">← Review hub</a><a href="./grade2-phonics-pathway.html">Existing phonics pathway</a><a href="./grade2-module-review-sheet.html">Teacher review sheet</a></nav>
+<header class="hero"><div class="eyebrow">🎨 VISUAL LEARNING DEMONSTRATION / عرض تعليمي مرئي</div><h1>Look • Blend • Find <span aria-hidden="true">✨</span></h1>
+<p class="arabic" lang="ar">انظر • اجمع الأصوات • اختر الكلمة المناسبة</p>
+<p>A small, teacher-guided prototype combining picture cues, contrasting letter colors, and a simple word-family check. It is <strong>not a video</strong> or an approved curriculum lesson. The letter colors are visual cues, not proof of stronger memory or comprehension.</p>
+</header>
+<section class="panel" aria-label="Interactive sample lesson">
+<label for="sampleWord">Choose a sample word <span lang="ar" dir="rtl">/ اختر كلمة</span></label>
+<select id="sampleWord" aria-describedby="sampleHelp"><option value="ring">ring — 💍 خاتم</option><option value="sing">sing — 🎤 يغني</option><option value="hand">hand — ✋ يد</option></select>
+<p class="progress" id="progress" aria-live="polite">Step 1 of 4</p>
+<div class="wordArt"><div class="picture"><span id="pictureIcon" class="pictureIcon" aria-hidden="true">💍</span><div id="pictureLabel" class="pictureLabel">ring — خاتم</div></div>
+<div><div id="wordDisplay" class="wordDisplay" role="img" aria-label="ring"><span class="startSound">r</span><span class="wordFamily">ing</span></div><div class="legend"><strong>First letter</strong> + <span style="color:#145c8b;font-weight:750">word-family ending</span></div></div></div>
+<div class="instruction"><h2 id="stageTitle" tabindex="-1">1. Look and name / انظر وسمِّ</h2><p id="stageEn">Look at the picture. Ask an adult to read the word.</p><p class="arabic" id="stageAr" lang="ar">انظر إلى الصورة. اطلب من شخص بالغ قراءة الكلمة.</p></div>
+<section aria-labelledby="voiceHeading"><h2 id="voiceHeading">Optional voice demonstration / الصوت التجريبي</h2><div class="voiceButtons"><button type="button" id="speakNormal">🔊 English • normal</button><button type="button" id="speakSlow">🐢 English • slow</button><button type="button" id="speakArabic">🔊 تعليمات بالعربية</button></div>
+<p id="voiceStatus" class="status" role="status" aria-live="polite">You can ask an adult to read everything aloud instead.</p>
+<p class="note"><strong>Voice limitation:</strong> Speech uses the browser/device's available synthesized voices if supported. These are <strong>not recorded child voices</strong>; accents, Arabic availability and clarity vary. No speech recognition, recording, or pronunciation scoring is used.</p>
+</section>
+<div id="quizWrap" hidden><h2>Choose another word from the same family <span lang="ar" dir="rtl">/ اختر كلمة من نفس المجموعة</span></h2><div id="quizChoices" class="quiz" role="group" aria-label="Word family choices"></div><p id="quizFeedback" class="feedback" role="status" aria-live="polite"></p></div>
+<p id="completeMessage" class="complete" hidden>🌟 Great effort! / أحسنت! This is practice, not a test score.</p>
+<div class="actions"><button type="button" class="secondary" id="prevStep">← Previous / السابق</button><button type="button" id="nextStep">Next / التالي →</button><button type="button" class="secondary" id="restart">↻ Restart / أعد</button></div>
+</section>
+<aside class="panel"><h2>Teacher review notes</h2><p>Review whether the picture supports the English word, the colored first-letter and word-family ending are readable, the Arabic labels are natural, and the answer options are clear. Test on a real iPhone and with VoiceOver. Please use <a href="./grade2-educator-review.html">the educator feedback tool</a> to suggest changes.</p><p class="note">This is a public adult-review page. Do not enter pupil-identifying information. No account or learner progress is stored. The sample is supplementary, and fluent Arabic/Grade 2 teacher approval is pending.</p></aside>
+</main></body></html>
