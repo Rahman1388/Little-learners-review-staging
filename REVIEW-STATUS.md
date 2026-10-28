@@ -42,6 +42,13 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - Record this as positive **owner acceptance of the basic preview**, not confirmation that every family, audio variant, Arabic utterance, VoiceOver step, or device setting was tested.
 - Educator content review, fluent Arabic-language validation, device accessibility and child privacy/release checks remain outstanding. The original Academy production `main` stays unchanged.
 
+## 28 October 2026 — Picture Word Explorer visual polish (staging only)
+- Enhanced the existing eight-family pilot with two contrasting pastel illustration-card styles, decorative stars, and a cheerful, static celebration panel.
+- Added a **written bilingual Step 1–4 status** plus a screen-reader progressbar with `aria-valuenow`, not a test score or claim of mastery.
+- Added a prominent word-family/module ribbon and a **Try another family** control at completion; cycling after `-ick` starts `-ing` again.
+- All eight family flows passed simulated JS/DOM verification after this change (wrong/correct answers, progress 1–4, wraparound, three mocked speech buttons); HTML IDs were consistent. **Not physical-browser, pronunciation, teacher or accessibility certification.**
+- Kept reduced-motion support and all earlier safeguards. The main Academy production repository remains unchanged.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
