@@ -22,7 +22,7 @@
   icon:$("quizIcon"),prompt:$("quizPrompt"),quizAr:$("quizAr"),answers:$("answerChoices"),feedback:$("feedback"),
   completeText:$("completionText"),soundStatus:$("soundStatus"),
   sayFirst:$("sayFirst"),saySecond:$("saySecond"),sayArabic:$("sayArabic"),
-
+  previous:$("previous"),next:$("next"),restart:$("restart"),
   gardenButtons:$("gardenButtons"),gardenStatus:$("gardenStatus"),familyBadge:$("familyBadge"),
   progressText:$("progressText"),progressBar:$("progressBar"),progressFill:$("progressFill"),nextFamily:$("nextFamily"),
  };
