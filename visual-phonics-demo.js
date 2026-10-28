@@ -16,7 +16,17 @@
       distractors:["sing","ball"], match:"sand",
       startAr:"انظر إلى صورة اليد. اطلب من شخص بالغ قراءة الكلمة الإنجليزية.",
       blendAr:"الحرف الأول h، والنهاية and. اجمع الجزأين لتقرأ hand.",
-      quizAr:"اختر كلمة تنتهي بالأحرف and." })
+      quizAr:"اختر كلمة تنتهي بالأحرف and." }),
+    ball: Object.freeze({ word:"ball", first:"b", ending:"all", icon:"⚽", label:"a ball", arabic:"كرة",
+      distractors:["ring","train"], match:"wall",
+      startAr:"انظر إلى صورة الكرة. اطلب من شخص بالغ قراءة الكلمة الإنجليزية.",
+      blendAr:"الحرف الأول b، والنهاية all. اجمع الجزأين لتقرأ ball.",
+      quizAr:"اختر كلمة تنتهي بالأحرف all." }),
+    rain: Object.freeze({ word:"rain", first:"r", ending:"ain", icon:"🌧️", label:"rain", arabic:"مطر",
+      distractors:["wall","hand"], match:"train",
+      startAr:"انظر إلى صورة المطر. اطلب من شخص بالغ قراءة الكلمة الإنجليزية.",
+      blendAr:"الحرف الأول r، والنهاية ain. اجمع الجزأين لتقرأ rain.",
+      quizAr:"اختر كلمة تنتهي بالأحرف ain." })
   });
   const $ = id => document.getElementById(id);
   const elements = {
@@ -26,7 +36,7 @@
     quiz:$("quizWrap"),choices:$("quizChoices"),feedback:$("quizFeedback"),
     complete:$("completeMessage"),previous:$("prevStep"),next:$("nextStep"),
     reset:$("restart"),normal:$("speakNormal"),slow:$("speakSlow"),
-    arabic:$("speakArabic"),voiceStatus:$("voiceStatus")
+    arabic:$("speakArabic"),voiceStatus:$("voiceStatus"),familyHint:$("familyHint")
   };
   if (Object.values(elements).some(x => !x)) return;
   let step = 0;
@@ -47,6 +57,7 @@
     ending.className="wordFamily";
     ending.textContent=entry.ending;
     elements.wordDisplay.append(start,ending);
+    elements.familyHint.textContent="First letter: "+entry.first+" • matching ending: -"+entry.ending+" / النهاية المشتركة: "+entry.ending;
   }
   function createChoices(entry) {
     elements.choices.replaceChildren();
@@ -99,19 +110,29 @@
     const engine=window.speechSynthesis;
     engine.cancel();
     const all=engine.getVoices();
-    const voice=all.find(v=>v.lang.toLowerCase().startsWith(lang==="ar-QA"?"ar":"en"));
+    const prefix=lang==="ar-QA"?"ar":"en";
+    const voices=all.filter(v=>typeof v.lang==="string" && v.lang.toLowerCase().startsWith(prefix));
+    const voice=voices.find(v=>v.lang.toLowerCase()===lang.toLowerCase()) || voices[0];
     if(lang==="ar-QA" && !voice) {
-      elements.voiceStatus.textContent="Arabic device voice unavailable. / الصوت العربي غير متاح. Please read the on-screen Arabic text.";
+      elements.voiceStatus.textContent=all.length===0
+        ?"Arabic voices are not listed yet. / لم تُحمَّل الأصوات العربية بعد. Try the button again after the device loads its voices, or ask an adult to read."
+        :"An Arabic device voice was not found. / لم يتم العثور على صوت عربي. Please ask an adult to read the on-screen Arabic text.";
       return;
     }
-    const utterance=new SpeechSynthesisUtterance(message);
-    utterance.lang=voice?voice.lang:lang;
-    if(voice) utterance.voice=voice;
-    utterance.rate=rate;
-    utterance.pitch=1;
-    utterance.onerror=()=>{elements.voiceStatus.textContent="Audio did not play. Please use adult-read guidance.";};
-    engine.speak(utterance);
-    elements.voiceStatus.textContent="Requested "+(lang==="ar-QA"?"Arabic instruction":"English word")+" in a device-generated voice (not a child's recording).";
+    try {
+      const utterance=new SpeechSynthesisUtterance(message);
+      utterance.lang=voice?voice.lang:lang;
+      if(voice) utterance.voice=voice;
+      utterance.rate=rate;
+      utterance.pitch=1;
+      utterance.onstart=()=>{elements.voiceStatus.textContent=(lang==="ar-QA"?"Arabic instruction":"English word")+" is playing using a device voice (not a recorded child voice).";};
+      utterance.onend=()=>{elements.voiceStatus.textContent="Playback finished. Ask an adult if any pronunciation sounded unclear.";};
+      utterance.onerror=()=>{elements.voiceStatus.textContent="Audio did not play. Please use adult-read guidance.";};
+      elements.voiceStatus.textContent="Audio requested; device speech may take a moment to start.";
+      engine.speak(utterance);
+    } catch (_) {
+      elements.voiceStatus.textContent="This device could not start speech. Please ask an adult to read the text.";
+    }
   }
   elements.normal.addEventListener("click",()=>speak(item().word,"en-GB",1));
   elements.slow.addEventListener("click",()=>speak(item().word,"en-GB",0.72));
