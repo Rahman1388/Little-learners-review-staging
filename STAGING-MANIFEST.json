@@ -40,6 +40,7 @@
     "grade2-phonics-pathway.js",
     "icon.svg",
     "index.html",
+    "iphone-audio-check.html",
     "picture-word-explorer.html",
     "picture-word-explorer.js",
     "school-live-news.json",
@@ -51,8 +52,8 @@
     "visual-phonics-demo.html",
     "visual-phonics-demo.js"
   ],
-  "htmlPages": 10,
+  "htmlPages": 11,
   "noStudentData": true,
   "news": "Seven school-directory source entries and an uninitialized QNA snapshot only; NOT real-time news or safety alerts",
-  "review": "iPhone owner reported silent synthetic voice. Added 16 offline-generated, same-origin synthetic English whole-word MP3 samples for adult review; simulated UI/audio passed. Actual device/audio and fluent Arabic/Grade 2 specialist checks still pending. No ranking guarantees or child grades."
+  "review": "Owner reported iPhone in-app browser could not play phonics sounds and had tapping difficulties; native JavaScript-free sound-check page added. 16 MP3 sources are in repo; actual iPhone audio and tap QA still unverified."
 }
