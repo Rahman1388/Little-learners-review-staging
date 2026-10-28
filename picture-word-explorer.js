@@ -63,7 +63,7 @@
   E.gardenButtons.appendChild(btn);
   gardenBtns.set(id,btn);
  }
- function cancelSpeech(){try{if("speechSynthesis" in window)window.speechSynthesis.cancel()}catch(_){/*voice optional*/}}
+ function cancelSpeech(){try{if(speechWatch!==null && typeof window.clearTimeout==="function")window.clearTimeout(speechWatch);speechWatch=null;activeSpeech=null;if("speechSynthesis" in window)window.speechSynthesis.cancel()}catch(_){/*voice optional*/}}
  function parts(el,entry){
   el.replaceChildren();
   el.setAttribute("aria-label",entry.word);
