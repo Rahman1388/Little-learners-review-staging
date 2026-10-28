@@ -18,6 +18,18 @@ button:focus-visible,select:focus-visible,a:focus-visible{outline:4px solid #8a1
 .kicker{color:#8a1538;font-weight:900}.ar{direction:rtl;text-align:right;line-height:1.6}.subtle{color:#465f73;font-size:14px}
 .nav,.buttons,.sound{display:flex;gap:10px;flex-wrap:wrap}.hero h1{color:#183e69}.hero .kicker{letter-spacing:.04em}.nav a{padding:10px 13px;min-height:45px;border-radius:12px;color:#126293;text-decoration:none;background:#fff;border:2px solid #8fbfd5;font-weight:800}
 label[for="family"]{font-weight:900;display:block;margin-bottom:8px}select{min-height:49px;border:2px solid #85b7ce;border-radius:12px;background:#fff;padding:10px;width:100%;max-width:410px;color:#173954}
+.gardenPanel{border:2px solid #a2d7be;border-radius:19px;background:linear-gradient(120deg,#f5ffed,#e6faff);padding:14px;margin:15px 0}
+.gardenPanel h2{font-size:clamp(19px,3.5vw,24px)}.gardenPanel p{margin:8px 0 12px}
+.gardenButtons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.gardenButtons button{background:#fff5dc;color:#174960;border:2px solid #c8d9b2;min-height:70px;padding:8px 5px;border-radius:16px;font-size:clamp(14px,2.5vw,18px)}
+.gardenButtons button:nth-child(4n+2){background:#ecf1ff;border-color:#a9c5ea}
+.gardenButtons button:nth-child(4n+3){background:#ffeaf3;border-color:#e4bad3}
+.gardenButtons button:nth-child(4n){background:#e2fbec;border-color:#a4d6b8}
+.gardenButtons button[aria-pressed="true"]{border:3px solid #8a1538;box-shadow:0 0 0 2px white}
+.gardenButtons button[data-practised="true"]{box-shadow:inset 0 -5px #77c297}
+.gardenButtons button span{display:block}.gardenButtons button .flower{font-size:25px;line-height:1.1}
+.gardenStatus{font-weight:850;color:#245b50;font-size:14px}
+@media(max-width:480px){.gardenButtons{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .stageTrack{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0}
 .progressSummary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 9px;flex-wrap:wrap;font-size:14px;font-weight:800}.progressOuter{width:100%;height:15px;border:2px solid #a5cadd;background:#e9f5fb;border-radius:30px;overflow:hidden}.progressFill{display:block;height:100%;width:25%;background:#16689b;border-radius:30px}
 .familyBadge{display:inline-block;margin:9px 0 2px;padding:8px 12px;border:2px solid #9bd7ce;background:#e9fbf3;border-radius:15px;color:#215c50;font-weight:850}
@@ -52,6 +64,12 @@ label[for="family"]{font-weight:900;display:block;margin-bottom:8px}select{min-h
 <option value="ay">-ay • day / play • Module 5</option><option value="ick">-ick • sick / kick • Module 5</option>
 </select>
 <div id="familyBadge" class="familyBadge" aria-live="polite">🔎 Family -ing • Module 2 / مجموعة الكلمات</div>
+<section class="gardenPanel" aria-labelledby="gardenHeading">
+<h2 id="gardenHeading">🌼 Word Family Garden <span lang="ar" dir="rtl">/ حديقة الكلمات</span></h2>
+<p>Tap any flower to practise a word family. A check mark means that family was <strong>tried during this visit</strong> — it is not a grade or proof of mastery.</p>
+<div id="gardenButtons" class="gardenButtons" role="group" aria-label="Choose one of eight phonics families"></div>
+<p id="gardenStatus" class="gardenStatus" role="status" aria-live="polite">0 of 8 families practised in this visit / ٠ من ٨ مجموعات</p>
+</section>
 <p class="subtle" id="familyHelp">All pictures are emoji placeholders for adult evaluation, not final illustrations. Some actions are represented by associated objects.</p>
 <div class="progressSummary"><span id="progressText">Step 1 of 4 / الخطوة ١ من ٤</span><span>⭐ Practice journey / رحلة التدرّب</span></div><div class="progressOuter" id="progressBar" role="progressbar" aria-label="Activity progress" aria-valuemin="0" aria-valuemax="4" aria-valuenow="1"><span class="progressFill" id="progressFill"></span></div>
 <div class="stageTrack" aria-label="Activity stages"><span id="stepLabel0" aria-current="step">1. See / انظر</span><span id="stepLabel1">2. Match / طابق</span><span id="stepLabel2">3. Build / ركّب</span><span id="stepLabel3">4. Celebrate / أحسنت</span></div>
