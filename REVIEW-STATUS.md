@@ -58,6 +58,13 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - Simulated DOM checks passed all eight families, wrong/correct choices, progress bar, garden stamps, try-another navigation, restart and mocked voice controls. No live iPhone Safari, speech or specialist Arabic sign-offs yet.
 - Main Academy production `main` was not modified. Repositories and branding remain unchanged.
 
+## 28 October 2026 — iPhone reviewer reports missing word audio
+- Owner screenshot shows the Word Family Garden working in a mobile in-app browser, but owner explicitly reports **no sound for the words**. Audio is therefore **UNVERIFIED / REQUIRES RETEST**; do not count this as a passed audio review.
+- Reworked the existing public **adult staging** Explorer: a sound-test button beside the Garden and a speaker button beneath each word card. These now call device speech directly on tap, with visible guidance and diagnostic status when playback fails or does not start.
+- Added fallback steps to open the website **directly in Safari**. iOS embedded webviews can differ from Safari in Web Speech support. No embedded recorded word audio was added.
+- Static source + mocked-browser checks passed the new speaker handlers, silent-browser diagnostic, and all eight families. They **cannot confirm sound on the user's device**. Await the owner's Safari/physical iPhone retest; a recorded audio solution may be required if device synthesis continues to fail.
+- The original Academy production `main` remains unchanged. Existing Arabic teacher/Grade 2 educator/accessibility sign-off remains pending.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
