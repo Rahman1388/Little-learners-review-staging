@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="theme-color" content="#e8f6ff">
+<meta name="description" content="Independent adult-review prototype of an eight-family English Arabic illustrated phonics activity.">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Picture Word Explorer | Little Learners Adult Review</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173954;background:#e8f6ff}*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#dff5ff,#fff6d9 60%,#f2ecff);min-height:100vh}main{max-width:960px;margin:0 auto;padding:16px 14px 72px}
+h1{font-size:clamp(28px,6vw,44px);line-height:1.17;margin:8px 0}h2{font-size:clamp(21px,4vw,28px);margin:9px 0}p{line-height:1.55}
+a,button,select{font:inherit}button{cursor:pointer;min-height:48px;background:#165e91;color:#fff;border:2px solid #165e91;border-radius:13px;padding:11px 14px;font-weight:800}button:disabled{opacity:.53;cursor:not-allowed}button.secondary{background:white;color:#165e91}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.flag{padding:12px;text-align:center;background:#fff1d7;border-bottom:2px solid #a3792b;color:#4a2e06;font-weight:850;font-size:14px}
+.hero,.panel{border-radius:23px;background:white;border:2px solid #c4dbe5;box-shadow:0 3px 0 #c5dce6;margin:15px 0;padding:clamp(16px,3vw,25px)}.hero{background:linear-gradient(120deg,#fff0b6,#fff,#dbf4ff)}
+.kicker{color:#8a1538;font-weight:900}.ar{direction:rtl;text-align:right;line-height:1.6}.subtle{color:#465f73;font-size:14px}
+.nav,.buttons,.sound{display:flex;gap:10px;flex-wrap:wrap}.nav a{padding:10px 13px;min-height:45px;border-radius:12px;color:#126293;text-decoration:none;background:#fff;border:2px solid #8fbfd5;font-weight:800}
+label[for="family"]{font-weight:900;display:block;margin-bottom:8px}select{min-height:49px;border:2px solid #85b7ce;border-radius:12px;background:#fff;padding:10px;width:100%;max-width:410px;color:#173954}
+.stageTrack{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0}.stageTrack span{padding:8px 10px;border-radius:20px;border:1px solid #a3c4d6;background:#edf8ff;font-size:13px;font-weight:800}.stageTrack span[aria-current="step"]{background:#8a1538;color:white;border-color:#8a1538}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:17px 0}.pictureCard{background:#f1faff;border:2px solid #abd5e5;border-radius:19px;text-align:center;padding:13px;min-height:230px}.emoji{display:block;font-size:clamp(60px,10vw,108px);line-height:1.28;margin:8px 0}.split{font-size:clamp(38px,6.5vw,62px);font-weight:900;line-height:1.25;letter-spacing:.015em}.onset{color:#8a1538}.ending{color:#115f95;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:5px}.wordAr{font-size:19px;margin:6px 0}.instruction{border-left:5px solid #8a1538;background:#f7f9ff;border-radius:10px;padding:13px 16px;margin:17px 0}
+.quizIcon{font-size:clamp(74px,12vw,120px);line-height:1.45;display:block;text-align:center}.prompt{font-size:19px;font-weight:850}.answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0}.answers button{font-size:clamp(17px,3vw,23px);background:white;color:#145b84;border:2px solid #8bbfd7}.answers button[aria-pressed="true"]{background:#d7f4e7;color:#174c39;border-color:#14714e}
+.feedback{font-weight:800;min-height:28px;color:#22566c}.completion{background:#e8f9e9;border:2px solid #92c39c;border-radius:16px;padding:17px;font-size:18px}
+.sound{margin:12px 0}.sound button{font-size:14px;background:#fff;color:#145b84}
+.notice{border:2px solid #d0b276;background:#fff8e8;border-radius:12px;padding:13px;margin:14px 0}
+[hidden]{display:none!important}
+@media(max-width:530px){.cards{grid-template-columns:1fr 1fr;gap:7px}.pictureCard{padding:8px;min-height:190px}.wordAr{font-size:16px}.answers{grid-template-columns:1fr}.buttons button{flex:1}.emoji{font-size:60px}.split{font-size:34px}}
+@media(max-width:350px){.cards{grid-template-columns:1fr}.pictureCard{min-height:auto}}
+@media print{body{background:white}.flag,.sound,.buttons,.nav{display:none}.hero,.panel{box-shadow:none;border:1px solid #777;break-inside:avoid}}
+</style>
+<script defer src="./picture-word-explorer.js"></script>
+</head><body>
+<aside class="flag" role="note">🧪 Adult reviewers only • Unapproved independent Grade 2 learning prototype • Not a school or Ministry service</aside>
+<main>
+<nav class="nav" aria-label="Review navigation"><a href="./index.html">← Review hub</a><a href="./visual-phonics-demo.html">Five-word mini-lesson</a><a href="./grade2-module-review-sheet.html">Teacher checklist</a></nav>
+<header class="hero"><div class="kicker">🌈 NEW REVIEW PILOT • EXPANDED PHONICS</div>
+<h1>Picture Word Explorer <span aria-hidden="true">✨</span></h1>
+<p class="ar" lang="ar">مغامرة الكلمات المصوّرة — تعلّم وتدرّب مع شخص بالغ</p>
+<p>Explore <strong>eight word families</strong> using sixteen illustrative picture-word examples, English and Arabic together, two short quizzes, and an optional device voice. This is adult-guided practice, <strong>not an assessed grade</strong>.</p></header>
+<section class="panel" aria-label="Interactive picture-word activity">
+<label for="family">Choose a word family / <span lang="ar" dir="rtl">اختر مجموعة كلمات</span></label>
+<select id="family" aria-describedby="familyHelp">
+<option value="ing">-ing • ring / sing • Module 2</option><option value="and">-and • hand / sand • Module 2</option>
+<option value="all">-all • ball / wall • Module 3</option><option value="ack">-ack • black / snack • Module 3</option>
+<option value="ain">-ain • rain / train • Module 4</option><option value="ink">-ink • pink / sink • Module 4</option>
+<option value="ay">-ay • day / play • Module 5</option><option value="ick">-ick • sick / kick • Module 5</option>
+</select>
+<p class="subtle" id="familyHelp">All pictures are emoji placeholders for adult evaluation, not final illustrations. Some actions are represented by associated objects.</p>
+<div class="stageTrack" aria-label="Activity stages"><span id="stepLabel0" aria-current="step">1. See / انظر</span><span id="stepLabel1">2. Match / طابق</span><span id="stepLabel2">3. Build / ركّب</span><span id="stepLabel3">4. Celebrate / أحسنت</span></div>
+<section class="instruction" aria-labelledby="stepHeading"><h2 id="stepHeading" tabindex="-1">1. See the words</h2><p id="instructionEn">Look at two words with the same ending. Ask an adult to read them.</p><p class="ar" id="instructionAr" lang="ar">انظر إلى كلمتين لهما النهاية نفسها. اطلب من شخص بالغ قراءتهما.</p></section>
+<div id="seeStage" class="cards" aria-label="Two illustrated words">
+<article class="pictureCard"><span class="emoji" id="emoji0" aria-hidden="true">💍</span><div class="split" id="split0" aria-label="ring">ring</div><p id="label0" class="wordAr" lang="ar" dir="rtl">خاتم</p></article>
+<article class="pictureCard"><span class="emoji" id="emoji1" aria-hidden="true">🎤</span><div class="split" id="split1" aria-label="sing">sing</div><p id="label1" class="wordAr" lang="ar" dir="rtl">يغنّي</p></article>
+</div>
+<section id="quizStage" hidden aria-label="Practice question"><span id="quizIcon" class="quizIcon" aria-hidden="true">💍</span><p class="prompt" id="quizPrompt">Choose the matching word.</p><p class="ar" id="quizAr" lang="ar">اختر الكلمة المناسبة.</p><div id="answerChoices" class="answers" role="group" aria-label="Choose one answer"></div><p id="feedback" class="feedback" role="status" aria-live="polite"></p></section>
+<section id="completeStage" class="completion" hidden aria-live="polite"><strong>🌟 Great effort! / أحسنت!</strong><p id="completionText">You noticed a matching word family. Try another family.</p><p class="ar" lang="ar">لاحظت الحروف المشتركة في الكلمات. جرّب مجموعة أخرى.</p><p class="subtle">This is practice feedback, not a test grade, certificate, or mastery claim.</p></section>
+<h2>Optional device voices / أصوات الجهاز الاختيارية</h2>
+<div class="sound"><button id="sayFirst" type="button">🔊 Word 1 • normal</button><button id="saySecond" type="button">🔊 Word 2 • slow</button><button id="sayArabic" type="button">🔊 Arabic labels / العربية</button></div>
+<p id="soundStatus" class="feedback" role="status" aria-live="polite">Adults may read the words aloud instead.</p>
+<div class="notice"><strong>Voice disclosure:</strong> The device may use a synthetic adult voice; no recorded child voice, voice recording, microphone, pronunciation scoring or language proficiency assessment is present. Arabic audio depends on the device's voices and must be reviewed by a fluent speaker.</div>
+<div class="buttons"><button id="previous" class="secondary" type="button">← Previous / السابق</button><button id="next" type="button">Next / التالي →</button><button id="restart" class="secondary" type="button">↻ Restart / أعد</button></div>
+</section>
+<aside class="panel"><h2>Notes for teachers and parents</h2><p>Check the pictures, phonics, blends such as <strong>bl, sn, tr, pl</strong>, English meaning, Arabic accuracy, size and contrast, device voices and real iPhone accessibility. Colors are optional visual cues, not a scientifically verified learning treatment.</p>
+<p class="notice"><strong>Privacy:</strong> This public staging review does not create accounts, send quiz answers, save activity attempts or ask for any child's identifying information. Please do not use actual pupil details. The school curriculum mapping, Arabic expressions and accessibility need specialist sign-off before release.</p>
+</aside></main></body></html>
