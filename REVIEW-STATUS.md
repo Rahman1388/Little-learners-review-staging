@@ -49,6 +49,15 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - All eight family flows passed simulated JS/DOM verification after this change (wrong/correct answers, progress 1–4, wraparound, three mocked speech buttons); HTML IDs were consistent. **Not physical-browser, pronunciation, teacher or accessibility certification.**
 - Kept reduced-motion support and all earlier safeguards. The main Academy production repository remains unchanged.
 
+## 28 October 2026 — Word Family Garden usability update (adult staging only)
+- Improved the existing `picture-word-explorer.html` and `picture-word-explorer.js` rather than launching an unrelated module.
+- Added eight large pastel-coloured flower-family buttons. The current family selection and existing four-stage progress now update together.
+- After completing a family's activity, a flower receives a **tried this visit** check mark. Practice progress is kept only in ephemeral JavaScript memory, never stored, sent or treated as a pupil grade, assessment or mastery certificate.
+- Fixed two activity-integrity issues: Match question gave away the English answer, and Build instructions gave away the complete word. Answer options now rotate among three positions across families.
+- Connected the existing `Try another family` button so a reviewer can continue the flower journey.
+- Simulated DOM checks passed all eight families, wrong/correct choices, progress bar, garden stamps, try-another navigation, restart and mocked voice controls. No live iPhone Safari, speech or specialist Arabic sign-offs yet.
+- Main Academy production `main` was not modified. Repositories and branding remain unchanged.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
