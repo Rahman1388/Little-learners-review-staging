@@ -22,6 +22,13 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - This is a short interactive visual sequence, **not a video** or teacher-approved lesson; the colors are cues, not a scientifically proven memory treatment.
 - Changes were confined to the separate publicly accessible adult staging repo. Existing source Academy production branch was not updated.
 
+## 28 October 2026 — Five-word visual phonics iteration (staging only)
+- Extended samples from three to **five**: ring, sing, hand, ball, rain across `-ing`, `-and`, `-all`, `-ain`. Correct matching challenge responses: sing, ring, sand, wall, train.
+- Added the missing description target for the word selector and a visible written word-family hint; users do not need to rely only on red/blue letter cues.
+- Device-generated voice status now distinguishes requested/started/completed/failure, prefers a matching language voice, and provides explicit Arabic voice unavailability guidance.
+- Simulated JavaScript execution and interaction checks passed: all five word-flow quizzes (incorrect answer blocked, correct answer advances), all three speech controls, and HTML IDs. **This does not establish real browser, audio, educator, child, or accessibility approval.**
+- New files remain in the separately owner-approved *public adult review staging* site; original Academy `main` untouched.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
