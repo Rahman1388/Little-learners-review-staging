@@ -65,6 +65,13 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - Static source + mocked-browser checks passed the new speaker handlers, silent-browser diagnostic, and all eight families. They **cannot confirm sound on the user's device**. Await the owner's Safari/physical iPhone retest; a recorded audio solution may be required if device synthesis continues to fail.
 - The original Academy production `main` remains unchanged. Existing Arabic teacher/Grade 2 educator/accessibility sign-off remains pending.
 
+## 28 October 2026 — Owner-reported mobile blockers: sound and tapping
+- Owner shared an iPhone screenshot of the Word Family Garden inside a compact **in-app web viewer** and reported: **"There is no sound for these words"** and **"There is no phonic and can’t click even theses changes."**
+- Issue was **not** marked as resolved by owner. The screen confirms the flower UI rendered, not that tapping or audio worked. Embedded iOS browser speech synthesis support varies; the pilot currently depends on device-generated TTS and ships no guaranteed pre-recorded phonics audio.
+- Staging-only mitigation: add visible `Hear <word>` buttons directly within the Garden, keep live audio errors/status visible there, make the four stage chips actual gated clickable buttons, display selected word pair in the Garden, and scroll to the matching lesson after tapping a flower. Existing Safari instructions remain.
+- Simulated DOM regression verified all eight family buttons, locked/unlocked steps, correct answers, practice markers, progress and mocked audio. **No verified actual iPhone sound** yet; test the revised page in external Safari and record whether English, slow English and Arabic voices really play.
+- For a child-facing release, replace browser-dependent TTS with appropriately licensed, professionally reviewed phonics recordings with iPhone/browser audio fallback. Current device voice and emoji samples remain provisional and adult review only.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
