@@ -24,13 +24,13 @@
   sayFirst:$("sayFirst"),saySecond:$("saySecond"),sayArabic:$("sayArabic"),
   hearWord0:$("hearWord0"),hearWord1:$("hearWord1"),audioTest:$("audioTest"),topAudioStatus:$("topAudioStatus"),
   previous:$("previous"),next:$("next"),restart:$("restart"),
-  gardenButtons:$("gardenButtons"),gardenStatus:$("gardenStatus"),familyBadge:$("familyBadge"),
+  gardenButtons:$("gardenButtons"),gardenStatus:$("gardenStatus"),gardenSelection:$("gardenSelection"),gardenAudioStatus:$("gardenAudioStatus"),gardenHear0:$("gardenHear0"),gardenHear1:$("gardenHear1"),familyBadge:$("familyBadge"),
   progressText:$("progressText"),progressBar:$("progressBar"),progressFill:$("progressFill"),nextFamily:$("nextFamily"),
  };
  if(Object.values(E).some(v=>!v))return;
  const progress=[0,1,2,3].map(i=>$("stepLabel"+i));
  if(progress.some(x=>!x))return;
- let stage=0,passed=false;
+ let stage=0,passed=false,unlocked=1;
  const familyIds=Object.keys(FAMILIES);
  const visited=new Set(); // Memory only: cleared on reload/closing page, never uploaded.
  const flowerIcons=["🌼","🌷","🌻","🌸","🍀","🌺","🌿","🌹"];
@@ -48,14 +48,21 @@
    button.setAttribute("aria-label","Family -"+id+(practised?", practised in this visit":"")+(id===E.family.value?", selected":""));
    button.textContent=flowerIcons[familyIds.indexOf(id)]+" -"+id+(practised?" ✓":"");
   }
+  const pair=family().words;
+  E.gardenSelection.textContent="Selected -"+E.family.value+": "+pair[0].word+" / "+pair[1].word+" • Grade 2 Module "+family().module+". The word lesson opens below. / المجموعة المختارة: -"+E.family.value;
+  E.gardenHear0.textContent="🔊 Hear "+pair[0].word;
+  E.gardenHear1.textContent="🔊 Hear "+pair[1].word;
   E.gardenStatus.textContent=visited.size+" of 8 families practised in this visit / تم التدرّب على "+visited.size+" من ٨ مجموعات خلال هذه الزيارة.";
  }
  function activateFamily(id,focus){
   if(!Object.prototype.hasOwnProperty.call(FAMILIES,id))return;
   cancelSpeech();
-  E.family.value=id;stage=0;passed=false;
+  E.family.value=id;stage=0;passed=false;unlocked=1;
   E.soundStatus.textContent="New family selected. / تم اختيار مجموعة جديدة.";
   render(focus);
+  if(focus && typeof E.heading.scrollIntoView==="function"){
+   try{E.heading.scrollIntoView({block:"start",behavior:"smooth"})}catch(_){E.heading.scrollIntoView()}
+  }
  }
  for(const id of familyIds){
   const btn=document.createElement("button");btn.type="button";
@@ -87,7 +94,7 @@
  }
  function render(shouldFocus){
   const f=family(),a=f.words[0],b=f.words[1];
-  progress.forEach((v,i)=>{if(i===stage)v.setAttribute("aria-current","step");else v.removeAttribute("aria-current")});
+  progress.forEach((v,i)=>{v.disabled=i>unlocked;if(i===stage)v.setAttribute("aria-current","step");else v.removeAttribute("aria-current")});
   updateGarden();
   E.familyBadge.textContent="🔎 -"+f.end+" · Grade 2 Module "+f.module+" / مجموعة الكلمات";
   E.progressText.textContent="Step "+(stage+1)+" of 4 / الخطوة "+(stage+1)+" من ٤";
@@ -128,9 +135,13 @@
   E.next.textContent=stage===2?"Finish / إنهاء →":"Next / التالي →";
   if(shouldFocus)E.heading.focus({preventScroll:true});
  }
- E.family.addEventListener("change",()=>activateFamily(E.family.value,false));
+ progress.forEach((v,i)=>v.addEventListener("click",()=>{
+  if(i>unlocked)return;
+  cancelSpeech();stage=i;passed=false;render(true);
+ }));
+ E.family.addEventListener("change",()=>activateFamily(E.family.value,true));
  E.previous.addEventListener("click",()=>{if(stage>0){cancelSpeech();stage--;render(true)}});
- E.next.addEventListener("click",()=>{if(stage<3&&(stage===0||passed)){cancelSpeech();stage++;if(stage===3)visited.add(E.family.value);passed=false;render(true)}});
+ E.next.addEventListener("click",()=>{if(stage<3&&(stage===0||passed)){cancelSpeech();stage++;unlocked=Math.max(unlocked,stage);if(stage===3)visited.add(E.family.value);passed=false;render(true)}});
  E.restart.addEventListener("click",()=>{cancelSpeech();stage=0;passed=false;render(true);E.soundStatus.textContent="Ready to practice again. / جاهز للتدريب مرة أخرى."});
  E.nextFamily.addEventListener("click",()=>{
   const current=familyIds.indexOf(E.family.value);
@@ -138,7 +149,7 @@
   activateFamily(nextUntried||familyIds[(current+1)%familyIds.length],true);
  });
  let activeSpeech=null, speechWatch=null;
- function updateAudioStatus(text){E.soundStatus.textContent=text;E.topAudioStatus.textContent=text;}
+ function updateAudioStatus(text){E.soundStatus.textContent=text;E.topAudioStatus.textContent=text;E.gardenAudioStatus.textContent=text;}
  function speak(text,lang,rate){
   if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){
    updateAudioStatus("This in-app browser cannot provide speech. Open the same page in Safari and tap Hear this word. / افتح الصفحة في سفاري ثم اضغط استمع.");
@@ -202,5 +213,7 @@
  E.hearWord0.addEventListener("click",()=>speak(family().words[0].word,"en-GB",.92));
  E.hearWord1.addEventListener("click",()=>speak(family().words[1].word,"en-GB",.92));
  E.audioTest.addEventListener("click",()=>speak("ring","en-GB",.92));
+ E.gardenHear0.addEventListener("click",()=>speak(family().words[0].word,"en-GB",.9));
+ E.gardenHear1.addEventListener("click",()=>speak(family().words[1].word,"en-GB",.9));
  render(false);
 })();
