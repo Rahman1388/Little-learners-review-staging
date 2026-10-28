@@ -37,6 +37,11 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - Added `PICTURE-WORD-REVIEW.md` for adults and documented illustrative emoji limitations (microphone vs singing, tap vs sink, etc.). Do not advertise the pilot as approved or release it as a production learning assessment.
 - The separately hosted public adult staging repo was updated. Main Academy `main` was not touched.
 
+## Owner feedback — Picture Word Explorer (28 October 2026)
+- After being invited to check the new picture-word activity, including `-ack` and `-ay` examples, the owner replied: **"Its fine."**
+- Record this as positive **owner acceptance of the basic preview**, not confirmation that every family, audio variant, Arabic utterance, VoiceOver step, or device setting was tested.
+- Educator content review, fluent Arabic-language validation, device accessibility and child privacy/release checks remain outstanding. The original Academy production `main` stays unchanged.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
