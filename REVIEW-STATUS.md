@@ -87,6 +87,14 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - Main Academy is untouched. Any permanent learner-facing audio requires native speaker/phonics expert review, licensing/quality review and real mobile audio checks.
 - Owner mentioned ranking; added `SEARCH-AND-LEARNING-PROGRESS-PLAN.md`, distinguishing **non-guaranteed** Google/app-store visibility from privacy-first learner progress (no public child leaderboard and no unapproved grading).
 
+## 28 October 2026 — iPhone touch/audio issue and native-player fallback
+- The owner supplied an iPhone in-app browser screenshot showing the new Word Family Garden and reported **no phonics sound and difficulty tapping/using the changes**. This report supersedes earlier automated-only confidence; **iPhone behavior is not approved**.
+- The review page had no automatic flower audio because a flower selects a family; playback requires a separate speaker tap. The initial preview also placed some audio controls below the fold. An embedded iPhone browser might restrict device speech.
+- The public adult staging page previously received 16 generated short local `audio/review-english/*.mp3` files, a speaker button under each example and within the garden, and an audio test control. It retains disclosure that these are provisional synthetic eSpeak recordings, **not child voices**, nor phoneme-level validated audio.
+- To reduce dependence on JavaScript speech/custom buttons, added two **native HTML audio controls** in the Garden, initialized to ring and sing, with direct MP3 links. These controls should remain available even if the custom script fails; JavaScript switches both clips when a family is selected. The JS script reference includes an update version parameter to reduce stale cached code.
+- Simulated test: all eight flower selections updated both native audio sources; all eight Match/Build quiz flows passed; the garden and word speaker calls linked to the expected fixed English MP3 paths; the Arabic TTS path remained optional. All JS-requested HTML IDs were present.
+- **Still pending:** actual iPhone Safari and embedded webview playback, volume, touch and VoiceOver testing; native Arabic linguistic verification and teacher review. Do not claim the owner's problem is fixed until confirmed by an iPhone test. The main Academy is unchanged.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
