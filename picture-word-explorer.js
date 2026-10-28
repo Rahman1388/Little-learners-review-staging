@@ -59,7 +59,7 @@
    E.heading.textContent="1. Look at two words / انظر إلى كلمتين";
    E.instructionEn.textContent="Ask an adult to read '"+a.word+"' and '"+b.word+"'. Both have the written ending -"+f.end+".";
    E.instructionAr.textContent="انظر إلى الكلمتين واستمع إلى قراءتهما من شخص بالغ. تنتهيان بالحروف نفسها: "+f.end+".";
-   for(const [i,w] of f.words.entries()){E["emoji"+i].textContent=w.icon;E["label"+i].textContent=w.ar+" — "+w.label;parts(E["split"+i],w)}
+   for(const [i,w] of f.words.entries()){E["emoji"+i].textContent=w.icon;E["label"+i].textContent=w.ar;parts(E["split"+i],w)}
   } else if(stage===1){
    // Rotate the target within families for meaningful testing of both examples.
    quizTarget=1;const chosen=f.words[quizTarget];
