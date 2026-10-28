@@ -70,7 +70,7 @@
   E.gardenButtons.appendChild(btn);
   gardenBtns.set(id,btn);
  }
- function cancelSpeech(){try{if(speechWatch!==null && typeof window.clearTimeout==="function")window.clearTimeout(speechWatch);speechWatch=null;activeSpeech=null;if("speechSynthesis" in window)window.speechSynthesis.cancel()}catch(_){/*voice optional*/}}
+ function cancelSpeech(){try{if(speechWatch!==null && typeof window.clearTimeout==="function")window.clearTimeout(speechWatch);speechWatch=null;activeSpeech=null;if(activeClip){activeClip.pause();activeClip=null;}if("speechSynthesis" in window)window.speechSynthesis.cancel()}catch(_){/*audio optional*/}}
  function parts(el,entry){
   el.replaceChildren();
   el.setAttribute("aria-label",entry.word);
@@ -148,9 +148,31 @@
   const nextUntried=Array.from({length:familyIds.length},(_,i)=>familyIds[(current+i+1)%familyIds.length]).find(id=>!visited.has(id));
   activateFamily(nextUntried||familyIds[(current+1)%familyIds.length],true);
  });
- let activeSpeech=null, speechWatch=null;
+ let activeSpeech=null, speechWatch=null, activeClip=null;
  function updateAudioStatus(text){E.soundStatus.textContent=text;E.topAudioStatus.textContent=text;E.gardenAudioStatus.textContent=text;}
+ // Prefer short, local MP3 demonstration clips on iPhone: HTML audio responds
+ // to tap gestures more consistently than speechSynthesis in embedded viewers.
+ // These are synthetic adult-review assets, NOT professionally recorded phonics.
+ function playReviewWord(word,rate){
+  const supported=Object.values(FAMILIES).some(f=>f.words.some(x=>x.word===word));
+  if(!supported){updateAudioStatus("This example cannot be played.");return;}
+  if(typeof window.Audio!=="function"){speak(word,"en-GB",rate);return;}
+  cancelSpeech();
+  try {
+   const clip=new window.Audio("./audio/review-english/"+word+".mp3");
+   activeClip=clip;clip.preload="none";clip.playbackRate=rate;clip.volume=1;
+   clip.onplaying=()=>{if(activeClip===clip)updateAudioStatus("🔊 Playing locally recorded synthetic pronunciation: "+word+". Please check clarity.");};
+   clip.onended=()=>{if(activeClip===clip){activeClip=null;updateAudioStatus("✅ Finished: "+word+". If you heard nothing, check your iPhone media volume or try Safari.");}};
+   clip.onerror=()=>{if(activeClip===clip){activeClip=null;updateAudioStatus("🔇 Review audio file did not load. The device speech buttons may work in Safari; recordings are still provisional.");}};
+   updateAudioStatus("🔊 Loading a short English practice clip: "+word+"…");
+   const result=clip.play(); // Must be called synchronously from the tap.
+   if(result && typeof result.catch==="function")result.catch(()=>{
+    if(activeClip===clip){activeClip=null;updateAudioStatus("🔇 This browser blocked the practice clip. Open the link directly in Safari, check media volume and tap again.");}
+   });
+  }catch(_){activeClip=null;updateAudioStatus("🔇 Audio could not start here. Try the page in Safari.");}
+ }
  function speak(text,lang,rate){
+  if(activeClip){activeClip.pause();activeClip=null;}
   if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){
    updateAudioStatus("This in-app browser cannot provide speech. Open the same page in Safari and tap Hear this word. / افتح الصفحة في سفاري ثم اضغط استمع.");
    return;
@@ -207,13 +229,13 @@
    updateAudioStatus("🔇 This browser couldn't start device speech. Copy the page link into Safari or ask an adult to read the word.");
   }
  }
- E.sayFirst.addEventListener("click",()=>speak(family().words[0].word,"en-GB",1));
- E.saySecond.addEventListener("click",()=>speak(family().words[1].word,"en-GB",.72));
+ E.sayFirst.addEventListener("click",()=>playReviewWord(family().words[0].word,1));
+ E.saySecond.addEventListener("click",()=>playReviewWord(family().words[1].word,.82));
  E.sayArabic.addEventListener("click",()=>speak(family().words.map(w=>w.ar).join(". "),"ar-QA",.88));
- E.hearWord0.addEventListener("click",()=>speak(family().words[0].word,"en-GB",.92));
- E.hearWord1.addEventListener("click",()=>speak(family().words[1].word,"en-GB",.92));
- E.audioTest.addEventListener("click",()=>speak("ring","en-GB",.92));
- E.gardenHear0.addEventListener("click",()=>speak(family().words[0].word,"en-GB",.9));
- E.gardenHear1.addEventListener("click",()=>speak(family().words[1].word,"en-GB",.9));
+ E.hearWord0.addEventListener("click",()=>playReviewWord(family().words[0].word,1));
+ E.hearWord1.addEventListener("click",()=>playReviewWord(family().words[1].word,1));
+ E.audioTest.addEventListener("click",()=>playReviewWord("ring",1));
+ E.gardenHear0.addEventListener("click",()=>playReviewWord(family().words[0].word,1));
+ E.gardenHear1.addEventListener("click",()=>playReviewWord(family().words[1].word,1));
  render(false);
 })();
