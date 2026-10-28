@@ -6,7 +6,9 @@
   "note": "Owner approved a separate PUBLIC GitHub Pages staging preview for adult reviewers. It is not private, curriculum-certified or Ministry approved. noindex/robots.txt do not restrict access.",
   "entries": [
     "EDUCATOR-REVIEW-GUIDE.md",
+    "REVIEW-STATUS.md",
     "START-HERE.md",
+    "VISUAL-PHONICS-REVIEW-STEPS.md",
     "academy-brand-review.html",
     "academy-brand-review.js",
     "grade2-educator-review.html",
@@ -14,6 +16,7 @@
     "grade2-four-skills-data.js",
     "grade2-four-skills.html",
     "grade2-four-skills.js",
+    "grade2-module-review-sheet.html",
     "grade2-phonics-pathway.html",
     "grade2-phonics-pathway.js",
     "icon.svg",
@@ -21,10 +24,13 @@
     "school-live-news.json",
     "school-updates-data.js",
     "school-updates.html",
-    "school-updates.js"
+    "school-updates.js",
+    "teacher-quality-checklist.html",
+    "visual-phonics-demo.html",
+    "visual-phonics-demo.js"
   ],
-  "htmlPages": 6,
+  "htmlPages": 9,
   "noStudentData": true,
   "news": "Seven school-directory source entries and an uninitialized QNA snapshot only; NOT real-time news or safety alerts",
-  "review": "Teacher, Arabic specialist and real iPhone Safari/VoiceOver sign-offs pending"
+  "review": "Owner 5/5 original sections working; visual phonics pilot now five word examples, simulated QA pass; teacher, Arabic specialist and real iPhone Safari/VoiceOver sign-offs pending"
 }
