@@ -6,6 +6,7 @@
   "note": "Owner approved a separate PUBLIC GitHub Pages staging preview for adult reviewers. It is not private, curriculum-certified or Ministry approved. noindex/robots.txt do not restrict access.",
   "entries": [
     "EDUCATOR-REVIEW-GUIDE.md",
+    "PICTURE-WORD-REVIEW.md",
     "REVIEW-STATUS.md",
     "START-HERE.md",
     "VISUAL-PHONICS-REVIEW-STEPS.md",
@@ -21,6 +22,8 @@
     "grade2-phonics-pathway.js",
     "icon.svg",
     "index.html",
+    "picture-word-explorer.html",
+    "picture-word-explorer.js",
     "school-live-news.json",
     "school-updates-data.js",
     "school-updates.html",
@@ -29,8 +32,8 @@
     "visual-phonics-demo.html",
     "visual-phonics-demo.js"
   ],
-  "htmlPages": 9,
+  "htmlPages": 10,
   "noStudentData": true,
   "news": "Seven school-directory source entries and an uninitialized QNA snapshot only; NOT real-time news or safety alerts",
-  "review": "Owner 5/5 original sections working; visual phonics pilot now five word examples, simulated QA pass; teacher, Arabic specialist and real iPhone Safari/VoiceOver sign-offs pending"
+  "review": "Original owner smoke test 5/5; visual phonics five-word and eight-family picture-word pilots passed simulated functionality. Specialist curriculum, Arabic, iPhone Safari/VoiceOver and sound signoffs pending."
 }
