@@ -78,6 +78,15 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - GitHub Pages build for the mobile-control fixes completed successfully. Physical-device, audio clarity and accessibility sign-off remains pending.
 - Retain direct Safari advice as a possible workaround for embedded viewers; browser synthesized speech is a provisional fallback rather than guaranteed pedagogical phonics audio.
 
+## 28 October 2026 — iPhone sound mitigation: local English MP3 samples (adult staging only)
+- User reported silent word audio and initially difficult-to-tap changes from an iPhone in-app web viewer; screenshot showed Word Family Garden loaded. Do not claim the user's current audio is fixed until they test the new version.
+- Added an offline generator `scripts/generate_review_phonics_audio.py` and a one-time/on-generator-change GitHub Actions workflow, using offline eSpeak + FFmpeg (no external voice service or children’s personal information). Workflow completed successfully.
+- GitHub repository now contains **16 locally hosted English synthetic whole-word MP3** recordings under `audio/review-english/`; all 16 paths were verified present. The Explorer now tries a same-origin MP3 when an English speaker button is tapped. This is more independent of iPhone `speechSynthesis`, but **actual physical-device sound has not yet been confirmed**.
+- Audio is explicitly a **robotic synthetic adult prototype**, NOT professionally produced child voices and NOT phoneme-by-phoneme blending audio. Arabic remains device TTS and can be unavailable. No microphone, pupil identifiers, pronunciation assessment or saved score.
+- Simulated UI/Audio checks passed all eight family quizzes, flower controls, progress, 21 mocked local audio play calls, path matches for 16 clips and Arabic TTS invocation.
+- Main Academy is untouched. Any permanent learner-facing audio requires native speaker/phonics expert review, licensing/quality review and real mobile audio checks.
+- Owner mentioned ranking; added `SEARCH-AND-LEARNING-PROGRESS-PLAN.md`, distinguishing **non-guaranteed** Google/app-store visibility from privacy-first learner progress (no public child leaderboard and no unapproved grading).
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
