@@ -23,13 +23,46 @@
   completeText:$("completionText"),soundStatus:$("soundStatus"),
   sayFirst:$("sayFirst"),saySecond:$("saySecond"),sayArabic:$("sayArabic"),
   previous:$("previous"),next:$("next"),restart:$("restart"),nextFamily:$("nextFamily"),
+  gardenButtons:$("gardenButtons"),gardenStatus:$("gardenStatus"),familyBadge:$("familyBadge"),
+  progressText:$("progressText"),progressBar:$("progressBar"),progressFill:$("progressFill"),nextFamily:$("nextFamily"),
   familyBadge:$("familyBadge"),progressText:$("progressText"),progressBar:$("progressBar"),progressFill:$("progressFill")
  };
  if(Object.values(E).some(v=>!v))return;
  const progress=[0,1,2,3].map(i=>$("stepLabel"+i));
  if(progress.some(x=>!x))return;
- let stage=0,passed=false,quizTarget=0;
+ let stage=0,passed=false;
+ const familyIds=Object.keys(FAMILIES);
+ const visited=new Set(); // Memory only: cleared on reload/closing page, never uploaded.
+ const flowerIcons=["🌼","🌷","🌻","🌸","🍀","🌺","🌿","🌹"];
+ const gardenBtns=new Map();
  const family=()=>FAMILIES[E.family.value]||FAMILIES.ing;
+ function rotateAnswers(choices,offset){
+  const n=offset%choices.length;
+  return [...choices.slice(n),...choices.slice(0,n)];
+ }
+ function updateGarden(){
+  for(const [id,button] of gardenBtns){
+   const practised=visited.has(id);
+   button.setAttribute("aria-pressed",String(id===E.family.value));
+   button.setAttribute("data-practised",String(practised));
+   button.setAttribute("aria-label","Family -"+id+(practised?", practised in this visit":"")+(id===E.family.value?", selected":""));
+   button.textContent=flowerIcons[familyIds.indexOf(id)]+" -"+id+(practised?" ✓":"");
+  }
+  E.gardenStatus.textContent=visited.size+" of 8 families practised in this visit / تم التدرّب على "+visited.size+" من ٨ مجموعات خلال هذه الزيارة.";
+ }
+ function activateFamily(id,focus){
+  if(!Object.prototype.hasOwnProperty.call(FAMILIES,id))return;
+  cancelSpeech();
+  E.family.value=id;stage=0;passed=false;
+  E.soundStatus.textContent="New family selected. / تم اختيار مجموعة جديدة.";
+  render(focus);
+ }
+ for(const id of familyIds){
+  const btn=document.createElement("button");btn.type="button";
+  btn.addEventListener("click",()=>activateFamily(id,true));
+  E.gardenButtons.appendChild(btn);
+  gardenBtns.set(id,btn);
+ }
  function cancelSpeech(){try{if("speechSynthesis" in window)window.speechSynthesis.cancel()}catch(_){/*voice optional*/}}
  function parts(el,entry){
   el.replaceChildren();
@@ -55,6 +88,11 @@
  function render(shouldFocus){
   const f=family(),a=f.words[0],b=f.words[1];
   progress.forEach((v,i)=>{if(i===stage)v.setAttribute("aria-current","step");else v.removeAttribute("aria-current")});
+  E.familyBadge.textContent="🔎 Family -"+f.end+" • Module "+f.module+" / مجموعة الكلمات -"+f.end;
+  E.progressText.textContent="Step "+(stage+1)+" of 4 / الخطوة "+(stage+1)+" من ٤";
+  E.progressBar.setAttribute("aria-valuenow",String(stage+1));
+  E.progressFill.style.width=((stage+1)*25)+"%";
+  updateGarden();
   E.familyBadge.textContent="🔎 -"+f.end+" · Grade 2 Module "+f.module+" / مجموعة الكلمات";
   E.progressText.textContent="Step "+(stage+1)+" of 4 / الخطوة "+(stage+1)+" من ٤";
   E.progressBar.setAttribute("aria-valuenow",String(stage+1));
@@ -66,39 +104,43 @@
    E.instructionAr.textContent="انظر إلى الكلمتين واستمع إلى قراءتهما من شخص بالغ. تنتهيان بالحروف نفسها: "+f.end+".";
    for(const [i,w] of f.words.entries()){E["emoji"+i].textContent=w.icon;E["label"+i].textContent=w.ar;parts(E["split"+i],w)}
   } else if(stage===1){
-   // Rotate the target within families for meaningful testing of both examples.
-   quizTarget=1;const chosen=f.words[quizTarget];
+   const chosen=f.words[1];
    E.heading.textContent="2. Match the picture / طابق الصورة";
    E.instructionEn.textContent="Which English word matches the picture and Arabic meaning?";
    E.instructionAr.textContent="أي كلمة إنجليزية تناسب الصورة والمعنى العربي؟";
    E.icon.textContent=chosen.icon;
-   E.prompt.textContent="Choose the word that means: "+chosen.label;
+   E.prompt.textContent="Look at the picture. Which English word matches it?";
    E.quizAr.textContent="المعنى بالعربية: "+chosen.ar;
-   makeAnswers([f.words[0].word,f.wrong,f.words[1].word],chosen.word);
+   makeAnswers(rotateAnswers([f.words[0].word,f.wrong,f.words[1].word],familyIds.indexOf(E.family.value)%3),chosen.word);
   } else if(stage===2){
    const chosen=f.words[0];
    E.heading.textContent="3. Build the word / ركّب الكلمة";
-   E.instructionEn.textContent="Complete '"+chosen.start+" + ___' to build '"+chosen.word+"'. Find the matching word-family ending.";
-   E.instructionAr.textContent="اختر الحروف الناقصة لإكمال الكلمة: "+chosen.word+".";
+   E.instructionEn.textContent="Look at the picture. Choose the ending that completes the word beginning with '"+chosen.start+"'. (The full answer is not displayed.)";
+   E.instructionAr.textContent="انظر إلى الصورة. اختر نهاية الكلمة المناسبة بعد الحروف: "+chosen.start+"."; 
    E.icon.textContent=chosen.icon;
    E.prompt.textContent="Choose the ending for: "+chosen.start+" + ____";
    E.quizAr.textContent=chosen.ar+" — نهاية الكلمة";
-   makeAnswers([f.otherEnd[0],f.end,f.otherEnd[1]],f.end);
+   makeAnswers(rotateAnswers([f.otherEnd[0],f.end,f.otherEnd[1]],(familyIds.indexOf(E.family.value)+2)%3),f.end);
   } else {
    E.heading.textContent="4. Celebrate your practice / أحسنت";
    E.instructionEn.textContent="You practised two words ending in -"+f.end+".";
    E.instructionAr.textContent="تدرّبت على كلمتين تنتهيان بالحروف: "+f.end+".";
-   E.completeText.textContent="You practised '"+a.word+"' and '"+b.word+"'. Choose another word family to keep exploring.";
+   E.completeText.textContent="You practised '"+a.word+"' and '"+b.word+"'. Your flower is marked as tried this visit. Choose another family to keep exploring.";
   }
   E.previous.disabled=stage===0;
   E.next.disabled=stage===3||(stage===1||stage===2)&&!passed;
   E.next.textContent=stage===2?"Finish / إنهاء →":"Next / التالي →";
   if(shouldFocus)E.heading.focus({preventScroll:true});
  }
- E.family.addEventListener("change",()=>{cancelSpeech();stage=0;passed=false;render(false);E.soundStatus.textContent="New word family selected. / تم اختيار مجموعة كلمات جديدة."});
+ E.family.addEventListener("change",()=>activateFamily(E.family.value,false));
  E.previous.addEventListener("click",()=>{if(stage>0){cancelSpeech();stage--;render(true)}});
- E.next.addEventListener("click",()=>{if(stage<3&&(stage===0||passed)){cancelSpeech();stage++;passed=false;render(true)}});
+ E.next.addEventListener("click",()=>{if(stage<3&&(stage===0||passed)){cancelSpeech();stage++;if(stage===3)visited.add(E.family.value);passed=false;render(true)}});
  E.restart.addEventListener("click",()=>{cancelSpeech();stage=0;passed=false;render(true);E.soundStatus.textContent="Ready to practice again. / جاهز للتدريب مرة أخرى."});
+ E.nextFamily.addEventListener("click",()=>{
+  const current=familyIds.indexOf(E.family.value);
+  const nextUntried=Array.from({length:familyIds.length},(_,i)=>familyIds[(current+i+1)%familyIds.length]).find(id=>!visited.has(id));
+  activateFamily(nextUntried||familyIds[(current+1)%familyIds.length],true);
+ });
  E.nextFamily.addEventListener("click",()=>{
   cancelSpeech();
   const ids=Object.keys(FAMILIES),current=ids.indexOf(E.family.value);
