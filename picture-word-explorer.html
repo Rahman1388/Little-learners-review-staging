@@ -30,6 +30,13 @@ label[for="family"]{font-weight:900;display:block;margin-bottom:8px}select{min-h
 .gardenButtons button span{display:block}.gardenButtons button .flower{font-size:25px;line-height:1.1}
 .gardenStatus{font-weight:850;color:#245b50;font-size:14px}.gardenSelection{font-weight:900;color:#153e61;background:white;border:2px solid #abd3e4;border-radius:12px;padding:10px 12px;margin:13px 0}.gardenHear{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.gardenHear button{min-height:54px;background:#176a91;border:2px solid #176a91;color:#fff;border-radius:13px;font-weight:850;font-size:16px}@media(max-width:350px){.gardenHear{grid-template-columns:1fr}}
 @media(max-width:480px){.gardenButtons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.nativeSound{margin:15px 0;border:2px solid #aacbd8;border-radius:14px;background:#fff;padding:12px}
+.nativeSound p{margin:0 0 12px}.nativeAudioGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.nativeAudioGrid>div{min-width:0;border-radius:12px;background:#eaf6ff;padding:11px}
+.nativeAudioGrid label{font-weight:800;margin:0 0 9px;display:block}
+.nativeAudioGrid audio{display:block;width:100%;height:52px;max-width:100%}
+.nativeAudioGrid a{display:inline-block;color:#145d89;font-weight:750;line-height:1.4;padding:9px 0}
+@media(max-width:520px){.nativeAudioGrid{grid-template-columns:1fr}}
 .stageTrack{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0}
 .progressSummary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 9px;flex-wrap:wrap;font-size:14px;font-weight:800}.progressOuter{width:100%;height:15px;border:2px solid #a5cadd;background:#e9f5fb;border-radius:30px;overflow:hidden}.progressFill{display:block;height:100%;width:25%;background:#16689b;border-radius:30px}
 .familyBadge{display:inline-block;margin:9px 0 2px;padding:8px 12px;border:2px solid #9bd7ce;background:#e9fbf3;border-radius:15px;color:#215c50;font-weight:850}
@@ -50,7 +57,7 @@ label[for="family"]{font-weight:900;display:block;margin-bottom:8px}select{min-h
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 @media print{body{background:white}.flag,.sound,.buttons,.nav{display:none}.hero,.panel{box-shadow:none;border:1px solid #777;break-inside:avoid}}
 </style>
-<script defer src="./picture-word-explorer.js"></script>
+<script defer src="./picture-word-explorer.js?v=20261028-ios-audio-fallback"></script>
 </head><body>
 <aside class="flag" role="note">🧪 Adult reviewers only • Unapproved independent Grade 2 learning prototype • Not a school or Ministry service</aside>
 <main>
@@ -68,7 +75,7 @@ label[for="family"]{font-weight:900;display:block;margin-bottom:8px}select{min-h
 <option value="ay">-ay • day / play • Module 5</option><option value="ick">-ick • sick / kick • Module 5</option>
 </select>
 <div id="familyBadge" class="familyBadge" aria-live="polite">🔎 Family -ing • Module 2 / مجموعة الكلمات</div>
-<div class="audioHelp" role="note"><strong>🔊 Want to hear the words?</strong> After selecting a family, tap the blue <strong>Hear this word</strong> button under either picture. Sound starts only when you tap a speaker button (not when choosing a flower). <span lang="ar" dir="rtl">اضغط زر «استمع إلى الكلمة» أسفل الصورة لسماعها.</span> English audio clips are stored on this staging site. If silent in an in-app browser, open this page in <strong>Safari</strong> and check media volume.
+<div class="audioHelp" role="note"><strong>🔊 Want to hear the words?</strong> After selecting a family, tap the blue <strong>Hear this word</strong> button under either picture. Sound starts only when you tap a speaker button (not when choosing a flower). <span lang="ar" dir="rtl">اضغط زر «استمع إلى الكلمة» أسفل الصورة لسماعها.</span> English audio clips are stored on this staging site. If silent in an in-app browser, try the built-in audio players below, or copy this page into <strong>Safari</strong> and increase <strong>media</strong> volume.
 <div style="margin-top:10px"><button type="button" id="audioTest" aria-describedby="topAudioStatus">🔊 Test sound: ring / جرّب الصوت</button></div><p id="topAudioStatus" class="subtle" role="status" aria-live="polite">Tap to play a short synthetic pronunciation of “ring”; if silent, use Safari.</p></div>
 <section class="gardenPanel" aria-labelledby="gardenHeading">
 <h2 id="gardenHeading">🌼 Word Family Garden <span lang="ar" dir="rtl">/ حديقة الكلمات</span></h2>
@@ -76,6 +83,13 @@ label[for="family"]{font-weight:900;display:block;margin-bottom:8px}select{min-h
 <div id="gardenButtons" class="gardenButtons" role="group" aria-label="Choose one of eight phonics families"></div>
 <p id="gardenSelection" class="gardenSelection" aria-live="polite">Selected -ing: ring / sing. Tap a flower to jump to the words below. / اختر الزهرة لعرض الكلمات.</p>
 <div class="gardenHear" role="group" aria-label="Hear the selected word family"><button id="gardenHear0" type="button">🔊 Hear ring</button><button id="gardenHear1" type="button">🔊 Hear sing</button></div>
+<div class="nativeSound" aria-label="Native audio player fallback">
+ <p><strong>▶ Direct audio player / مشغّل الصوت</strong> — if the blue sound buttons are silent, use the built-in Play control below.</p>
+ <div class="nativeAudioGrid">
+  <div><label id="nativeLabel0" for="nativeAudio0">💍 Listen: ring / استمع</label><audio id="nativeAudio0" controls preload="none" playsinline src="./audio/review-english/ring.mp3">Your browser does not support audio.</audio><a id="directAudio0" href="./audio/review-english/ring.mp3" target="_blank" rel="noopener">Open ring recording directly</a></div>
+  <div><label id="nativeLabel1" for="nativeAudio1">🎤 Listen: sing / استمع</label><audio id="nativeAudio1" controls preload="none" playsinline src="./audio/review-english/sing.mp3">Your browser does not support audio.</audio><a id="directAudio1" href="./audio/review-english/sing.mp3" target="_blank" rel="noopener">Open sing recording directly</a></div>
+ </div>
+</div>
 <p id="gardenAudioStatus" class="subtle" role="status" aria-live="polite">Tap a speaker button to play a sample word clip. / اضغط للاستماع إلى تسجيل تجريبي.</p>
 <p id="gardenStatus" class="gardenStatus" role="status" aria-live="polite">0 of 8 families practised in this visit / ٠ من ٨ مجموعات</p>
 </section>
