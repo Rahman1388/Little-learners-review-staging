@@ -25,6 +25,7 @@
   hearWord0:$("hearWord0"),hearWord1:$("hearWord1"),audioTest:$("audioTest"),topAudioStatus:$("topAudioStatus"),
   previous:$("previous"),next:$("next"),restart:$("restart"),
   gardenButtons:$("gardenButtons"),gardenStatus:$("gardenStatus"),gardenSelection:$("gardenSelection"),gardenAudioStatus:$("gardenAudioStatus"),gardenHear0:$("gardenHear0"),gardenHear1:$("gardenHear1"),familyBadge:$("familyBadge"),
+  nativeAudio0:$("nativeAudio0"),nativeAudio1:$("nativeAudio1"),nativeLabel0:$("nativeLabel0"),nativeLabel1:$("nativeLabel1"),directAudio0:$("directAudio0"),directAudio1:$("directAudio1"),
   progressText:$("progressText"),progressBar:$("progressBar"),progressFill:$("progressFill"),nextFamily:$("nextFamily"),
  };
  if(Object.values(E).some(v=>!v))return;
@@ -52,6 +53,16 @@
   E.gardenSelection.textContent="Selected -"+E.family.value+": "+pair[0].word+" / "+pair[1].word+" • Grade 2 Module "+family().module+". The word lesson opens below. / المجموعة المختارة: -"+E.family.value;
   E.gardenHear0.textContent="🔊 Hear "+pair[0].word;
   E.gardenHear1.textContent="🔊 Hear "+pair[1].word;
+  for(let i=0;i<2;i++){
+   const word=pair[i].word;
+   const path="./audio/review-english/"+word+".mp3";
+   const player=E["nativeAudio"+i];
+   try{player.pause();player.src=path;player.load();}catch(_){player.src=path}
+   E["nativeLabel"+i].textContent=(i===0?"1. ":"2. ")+"Listen: "+word+" / استمع";
+   const direct=E["directAudio"+i];
+   direct.href=path;
+   direct.textContent="Open "+word+" recording directly";
+  }
   E.gardenStatus.textContent=visited.size+" of 8 families practised in this visit / تم التدرّب على "+visited.size+" من ٨ مجموعات خلال هذه الزيارة.";
  }
  function activateFamily(id,focus){
