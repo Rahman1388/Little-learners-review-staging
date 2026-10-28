@@ -29,6 +29,14 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - Simulated JavaScript execution and interaction checks passed: all five word-flow quizzes (incorrect answer blocked, correct answer advances), all three speech controls, and HTML IDs. **This does not establish real browser, audio, educator, child, or accessibility approval.**
 - New files remain in the separately owner-approved *public adult review staging* site; original Academy `main` untouched.
 
+## 28 October 2026 — Picture Word Explorer (new adult-only staging module)
+- Created `picture-word-explorer.html` and `picture-word-explorer.js` and linked them from the adult review hub.
+- Eight existing phonics families (`-ing`, `-and`, `-all`, `-ack`, `-ain`, `-ink`, `-ay`, `-ick`) and sixteen emoji-based word examples with English and Arabic displayed together.
+- Four guided steps: See, Match Picture, Build Word Ending, Celebrate. Wrong quiz choices request another attempt; no grading, accounts, data upload or persistent progress.
+- Simulated code/DOM tests passed for all eight families, wrong/correct answers, progress and restart, and mocked English/Arabic speech controls. Actual iPhone, voice quality, fluent Arabic and Grade 2 pedagogical reviews remain pending.
+- Added `PICTURE-WORD-REVIEW.md` for adults and documented illustrative emoji limitations (microphone vs singing, tap vs sink, etc.). Do not advertise the pilot as approved or release it as a production learning assessment.
+- The separately hosted public adult staging repo was updated. Main Academy `main` was not touched.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
