@@ -55,3 +55,23 @@ The prototype's script was parsed and all eight family journeys were executed wi
 
 ### Automated-style simulation result (not browser certification)
 All eight families passed repeated wrong/right Match and Build checks, flower navigation, practise-only marks, a full eight-flower count, a next-family wrap, restart, all linked HTML IDs, and simulated English/Arabic speech button calls. Correct-option positions were spread across all three positions in both quizzes. **Actual Safari, VoiceOver, native Arabic educator approval and live voice quality remain untested.**
+
+
+## 28 October — Owner report: Word Family Garden shows but no audible word speech on iPhone
+The owner sent a screenshot showing the eight flower selectors loaded inside a mobile in-app web viewer, and reported: **"There is no sound for these words."** This is a genuine user-facing issue, not a passed audio test.
+
+### Staging fixes and current limitations
+- Added a prominent **"🔊 Test sound: ring"** button immediately beside the Word Family Garden and direct **"🔊 Hear this word"** buttons below the two English picture-word cards (previously the speaker buttons were far below the quiz).
+- These buttons explicitly require a tap; simply changing flower selection never automatically starts audio.
+- Added a visible diagnostic message beside the top audio button, synchronized with the existing audio status.
+- Direct user-gesture speech requests now keep the utterance reference alive, handle start/end/error, report a silent no-start case when no events occur, clear pending alerts during family transitions, and display a Safari workaround.
+- A simulated functional check passed all eight quiz families, the new top and picture-card buttons, older voice buttons, and the unavailable-speech fallback. **This does not prove audible playback in the owner's iOS web viewer or Safari.**
+- The prototype still uses the device's Web Speech synthesis, **not an installed MP3/WAV file**. Some in-app browser WKWebView environments may not expose or play device speech even when Safari works. If speech does not play, open the exact page in Safari and raise media volume. Speech requires real-device testing before launch.
+- No microphone, child voice recordings, analytics, accounts, server calls, or stored answers were added.
+
+### Manual acceptance check
+1. Reload the new staging page and look for the test-sound button near the Garden (top), then tap it.
+2. Scroll to the first two picture cards; tap **Hear this word** beneath both words and check whether sound is audible.
+3. If no audio, tap the iPhone browser's **Open in Safari** control or copy/paste the site URL into Safari, raise the media volume, and try again. Record which browser and which button failed.
+4. Recheck **Word 1 normal**, **Word 2 slow**, **Arabic labels**. Fluent Arabic specialist review is still required even if sound starts.
+5. **Do not** mark audio passed until words can actually be heard on a physical device. Revisit self-contained recorded and legally licensed speech audio if the in-app browser remains a required launch channel.
