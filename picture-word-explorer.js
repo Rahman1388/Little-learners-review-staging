@@ -22,7 +22,7 @@
   icon:$("quizIcon"),prompt:$("quizPrompt"),quizAr:$("quizAr"),answers:$("answerChoices"),feedback:$("feedback"),
   completeText:$("completionText"),soundStatus:$("soundStatus"),
   sayFirst:$("sayFirst"),saySecond:$("saySecond"),sayArabic:$("sayArabic"),
-  hearWord0:$("hearWord0"),hearWord1:$("hearWord1"),
+  hearWord0:$("hearWord0"),hearWord1:$("hearWord1"),audioTest:$("audioTest"),topAudioStatus:$("topAudioStatus"),
   previous:$("previous"),next:$("next"),restart:$("restart"),
   gardenButtons:$("gardenButtons"),gardenStatus:$("gardenStatus"),familyBadge:$("familyBadge"),
   progressText:$("progressText"),progressBar:$("progressBar"),progressFill:$("progressFill"),nextFamily:$("nextFamily"),
@@ -138,9 +138,10 @@
   activateFamily(nextUntried||familyIds[(current+1)%familyIds.length],true);
  });
  let activeSpeech=null, speechWatch=null;
+ function updateAudioStatus(text){E.soundStatus.textContent=text;E.topAudioStatus.textContent=text;}
  function speak(text,lang,rate){
   if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){
-   E.soundStatus.textContent="This in-app browser cannot provide speech. Open the same page in Safari and tap Hear this word. / افتح الصفحة في سفاري ثم اضغط استمع.";
+   updateAudioStatus("This in-app browser cannot provide speech. Open the same page in Safari and tap Hear this word. / افتح الصفحة في سفاري ثم اضغط استمع.");
    return;
   }
   try{
@@ -153,7 +154,7 @@
    const compatible=voices.filter(x=>typeof x.lang==="string"&&x.lang.toLowerCase().startsWith(prefix));
    const selected=compatible.find(x=>x.lang.toLowerCase()===lang.toLowerCase())||compatible[0];
    if(prefix==="ar" && !selected){
-    E.soundStatus.textContent="Arabic device voice is not available yet. / الصوت العربي غير متاح حاليًا. Use an adult reader or open in Safari.";
+    updateAudioStatus("Arabic device voice is not available yet. / الصوت العربي غير متاح حاليًا. Use an adult reader or open in Safari.");
     return;
    }
    const utterance=new SpeechSynthesisUtterance(text);
@@ -166,19 +167,19 @@
     began=true;
     if(speechWatch!==null && typeof window.clearTimeout==="function")window.clearTimeout(speechWatch);
     speechWatch=null;
-    E.soundStatus.textContent="🔊 Playing: "+text+" • device-generated voice, not a recorded child voice.";
+    updateAudioStatus("🔊 Playing: "+text+" • device-generated voice, not a recorded child voice.");
    };
    utterance.onend=()=>{
     if(speechWatch!==null && typeof window.clearTimeout==="function")window.clearTimeout(speechWatch);
     speechWatch=null;activeSpeech=null;
-    E.soundStatus.textContent="Playback finished: "+text+". If you heard nothing, try Safari and turn up media volume.";
+    updateAudioStatus("Playback finished: "+text+". If you heard nothing, try Safari and turn up media volume.");
    };
    utterance.onerror=()=>{
     if(speechWatch!==null && typeof window.clearTimeout==="function")window.clearTimeout(speechWatch);
     speechWatch=null;activeSpeech=null;
-    E.soundStatus.textContent="🔇 Speech did not play. Please open the link directly in Safari, increase media volume and tap the blue Hear button. You may ask an adult to read the word instead.";
+    updateAudioStatus("🔇 Speech did not play. Please open the link directly in Safari, increase media volume and tap the blue Hear button. You may ask an adult to read the word instead.");
    };
-   E.soundStatus.textContent="🔊 Trying to play: "+text+". If silent, use Safari instead of the app's web viewer.";
+   updateAudioStatus("🔊 Trying to play: "+text+". If silent, use Safari instead of the app's web viewer.");
    // Direct button click calls engine.speak synchronously, which matters for iOS activation.
    if(engine.paused && typeof engine.resume==="function")engine.resume();
    engine.speak(utterance);
@@ -186,13 +187,13 @@
    if(typeof window.setTimeout==="function"){
     speechWatch=window.setTimeout(()=>{
       if(!began && activeSpeech===utterance){
-       E.soundStatus.textContent="🔇 No playback was detected here. Open this page directly in Safari and try again. Check your phone's media volume.";
+       updateAudioStatus("🔇 No playback was detected here. Open this page directly in Safari and try again. Check your phone's media volume.");
        speechWatch=null;
       }
     },3500);
    }
   }catch(_){
-   E.soundStatus.textContent="🔇 This browser couldn't start device speech. Copy the page link into Safari or ask an adult to read the word.";
+   updateAudioStatus("🔇 This browser couldn't start device speech. Copy the page link into Safari or ask an adult to read the word.");
   }
  }
  E.sayFirst.addEventListener("click",()=>speak(family().words[0].word,"en-GB",1));
@@ -200,5 +201,6 @@
  E.sayArabic.addEventListener("click",()=>speak(family().words.map(w=>w.ar).join(". "),"ar-QA",.88));
  E.hearWord0.addEventListener("click",()=>speak(family().words[0].word,"en-GB",.92));
  E.hearWord1.addEventListener("click",()=>speak(family().words[1].word,"en-GB",.92));
+ E.audioTest.addEventListener("click",()=>speak("ring","en-GB",.92));
  render(false);
 })();
