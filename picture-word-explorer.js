@@ -22,7 +22,8 @@
   icon:$("quizIcon"),prompt:$("quizPrompt"),quizAr:$("quizAr"),answers:$("answerChoices"),feedback:$("feedback"),
   completeText:$("completionText"),soundStatus:$("soundStatus"),
   sayFirst:$("sayFirst"),saySecond:$("saySecond"),sayArabic:$("sayArabic"),
-  previous:$("previous"),next:$("next"),restart:$("restart")
+  previous:$("previous"),next:$("next"),restart:$("restart"),nextFamily:$("nextFamily"),
+  familyBadge:$("familyBadge"),progressText:$("progressText"),progressBar:$("progressBar"),progressFill:$("progressFill")
  };
  if(Object.values(E).some(v=>!v))return;
  const progress=[0,1,2,3].map(i=>$("stepLabel"+i));
@@ -54,6 +55,10 @@
  function render(shouldFocus){
   const f=family(),a=f.words[0],b=f.words[1];
   progress.forEach((v,i)=>{if(i===stage)v.setAttribute("aria-current","step");else v.removeAttribute("aria-current")});
+  E.familyBadge.textContent="🔎 -"+f.end+" · Grade 2 Module "+f.module+" / مجموعة الكلمات";
+  E.progressText.textContent="Step "+(stage+1)+" of 4 / الخطوة "+(stage+1)+" من ٤";
+  E.progressBar.setAttribute("aria-valuenow",String(stage+1));
+  E.progressFill.style.width=((stage+1)*25)+"%";
   E.see.hidden=stage!==0;E.quiz.hidden=!(stage===1||stage===2);E.complete.hidden=stage!==3;
   if(stage===0){
    E.heading.textContent="1. Look at two words / انظر إلى كلمتين";
@@ -94,6 +99,13 @@
  E.previous.addEventListener("click",()=>{if(stage>0){cancelSpeech();stage--;render(true)}});
  E.next.addEventListener("click",()=>{if(stage<3&&(stage===0||passed)){cancelSpeech();stage++;passed=false;render(true)}});
  E.restart.addEventListener("click",()=>{cancelSpeech();stage=0;passed=false;render(true);E.soundStatus.textContent="Ready to practice again. / جاهز للتدريب مرة أخرى."});
+ E.nextFamily.addEventListener("click",()=>{
+  cancelSpeech();
+  const ids=Object.keys(FAMILIES),current=ids.indexOf(E.family.value);
+  E.family.value=ids[(current+1)%ids.length];
+  stage=0;passed=false;render(true);
+  E.soundStatus.textContent="New family selected. Ask an adult to read the two words. / تم اختيار مجموعة جديدة.";
+ });
  function speak(text,lang,rate){
   if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){E.soundStatus.textContent="Audio is not supported. Ask an adult to read the labels.";return}
   try{
