@@ -72,6 +72,12 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - Simulated DOM regression verified all eight family buttons, locked/unlocked steps, correct answers, practice markers, progress and mocked audio. **No verified actual iPhone sound** yet; test the revised page in external Safari and record whether English, slow English and Arabic voices really play.
 - For a child-facing release, replace browser-dependent TTS with appropriately licensed, professionally reviewed phonics recordings with iPhone/browser audio fallback. Current device voice and emoji samples remain provisional and adult review only.
 
+## Owner follow-up — mobile preview responding (28 October 2026)
+- After reporting no sound and difficulty tapping changes in the iPhone in-app web viewer, owner replied: **"Got it. Now its fine you are right."**
+- This indicates the owner considers the immediate issue resolved in their current usage. **Do not infer** that both iOS app webviews and external Safari, every audio voice or every family were formally tested.
+- GitHub Pages build for the mobile-control fixes completed successfully. Physical-device, audio clarity and accessibility sign-off remains pending.
+- Retain direct Safari advice as a possible workaround for embedded viewers; browser synthesized speech is a provisional fallback rather than guaranteed pedagogical phonics audio.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
