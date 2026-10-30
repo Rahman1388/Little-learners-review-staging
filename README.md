@@ -1,15 +1,19 @@
-# Little Learners Academy — adult review staging
+# Little Learning Academy — public adult review staging
 
-This is the **public development review website**, kept separate from the existing Academy. Intended for adult teachers, parents and the owner; public links can be opened by anyone.
+**START HERE (one main link):** https://rahman1388.github.io/Little-learners-review-staging/
 
-The staging website currently has ten watermarked adult-review HTML pages, covering Grade 2 lessons, phonics, interactive visual picture-word practice (five sample words and a separate eight-family, sixteen-word explorer), a local-only educator feedback helper, two printable teacher checklists, Qatar source-linked school updates, and bilingual name comparison.
+The homepage now has a single **🚀 START LEARNING — Latest Version** button. It leads to the combined **Picture Word Explorer + Word Family Garden**, the latest interactive phonics pilot. Older demonstrations are preserved under a collapsed **Previous experiments** area to avoid confusing reviewers. The current activity leads onward to **Grade 2 English — Five Learning Modules**.
 
-**This is NOT an official school or Ministry-approved curriculum.** News links are for reference, not verified emergency warnings. Do not enter real pupil data. Arabic specialist review and physical iPhone Safari/VoiceOver QA remain pending. Preference scores are not trademark or domain checks.
+The independent public review site contains 11 adult-oriented HTML pages, including the current picture-word activity, historical phonics prototypes, the five-module Grade 2 pilot, iPhone sound check, local-only adult educator feedback, two teacher checklists, Qatar source-linked School Updates, and provisional bilingual name review.
 
-The name of the Academy and repositories has **not been finalized**. Both repo names are retained for continuity until an independently validated brand is selected.
+The current activity provides 8 phonics families, 16 bilingual emoji-based picture words, matching and letter-ending quizzes, progress marks for the current page visit only and 16 short hosted synthetic English MP3 clips. It has native HTML audio controls as a fallback and a separate audio-check page. These audio clips are **not** professional recordings of children or validated phonemic models. Device audio can be unavailable in embedded in-app browsers. Arabic speech requires a compatible device voice; no recorded Arabic samples have been reviewed.
 
-Official source code: https://github.com/Rahman1388/little-learners-academy
+**This is NOT an official school or Ministry-approved curriculum or a child-ready app.** Source links are not verified emergency news. Do not enter identifiable pupil details. Real iPhone Safari/VoiceOver testing, Arabic expert review and Grade 2 teacher sign-off remain pending. Robots/noindex are not privacy controls, and preference scores are not trademark clearance.
 
-GitHub Pages has been activated and deployed successfully. Review hub: https://rahman1388.github.io/Little-learners-review-staging/ . Visual mini-lesson: https://rahman1388.github.io/Little-learners-review-staging/visual-phonics-demo.html . Picture Word Explorer: https://rahman1388.github.io/Little-learners-review-staging/picture-word-explorer.html . These visual practice modules passed simulated UI/logic checks; real iPhone, audio, VoiceOver, Arabic specialist, and teacher checks have **not** yet passed.
+**The original production Academy was NOT merged or changed.** Only the separate owner-approved public staging website has been consolidated into one starting point. Both repository names remain unchanged until a name is cleared and approved.
 
-*Robots and noindex are not privacy protections.*
+Current adult staging repository: https://github.com/Rahman1388/Little-learners-review-staging
+
+Original Academy code: https://github.com/Rahman1388/little-learners-academy
+
+For step-by-step use and iPhone audio troubleshooting, read [START-HERE.md](./START-HERE.md). Do not promote staging into production without explicit owner approval and the outstanding checks.
