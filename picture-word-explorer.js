@@ -57,7 +57,12 @@
    const word=pair[i].word;
    const path="./audio/review-english/"+word+".mp3";
    const player=E["nativeAudio"+i];
-   try{player.pause();player.src=path;player.load();}catch(_){player.src=path}
+   // Do not reload an already selected recording on every step redraw.
+   // Reloading on each quiz transition interrupts <audio> playback on iOS.
+   if(player.getAttribute("src")!==path){
+    try{player.pause();player.setAttribute("src",path);player.load();}
+    catch(_){player.setAttribute("src",path)}
+   }
    E["nativeLabel"+i].textContent=(i===0?"1. ":"2. ")+"Listen: "+word+" / استمع";
    const direct=E["directAudio"+i];
    direct.href=path;
