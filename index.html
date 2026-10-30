@@ -11,6 +11,7 @@
 :root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;background:#eaf7ff;color:#173b59}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(145deg,#dff3ff,#fff4d8 60%,#eaf4ff)}
 main{max-width:840px;margin:auto;padding:16px 15px 70px}h1{font-size:clamp(30px,6vw,46px);line-height:1.16;margin:10px 0}h2{font-size:clamp(21px,4vw,28px);margin:10px 0}p{line-height:1.55}
+.audioSample{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}.audioSample>div{min-width:0;background:#f5fbff;border:1px solid #a9cede;border-radius:14px;padding:13px}.audioSample strong{display:block;margin-bottom:9px}.audioSample audio{display:block;width:100%;min-height:47px}@media(max-width:510px){.audioSample{grid-template-columns:1fr}}
 a,summary{font:inherit}a:focus-visible,summary:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
 .banner{background:#fff0d6;color:#50340b;border-bottom:2px solid #a67c32;font-size:14px;text-align:center;font-weight:800;padding:12px}
 .hero,.panel{border:2px solid #bfd9e8;border-radius:23px;background:#ffffffed;box-shadow:0 3px 0 #c3d8e2;padding:clamp(18px,3.5vw,28px);margin:16px 0}
@@ -38,6 +39,16 @@ summary{cursor:pointer;font-weight:850;color:#165c86;padding:8px 2px;min-height:
 <p class="substart">🌼 Eight word families • 16 picture words • English + Arabic • audio clips</p>
 <p class="muted">This button opens the newest combined <strong>Picture Word Explorer + Word Family Garden</strong>, with the current sound controls and quizzes. It is our main review activity, not a released children's app.</p>
 </header>
+<section class="panel" aria-labelledby="audioStart">
+<h2 id="audioStart">🔊 First check the sound / اختبر الصوت أولاً</h2>
+<p><strong>If you previously heard no words on your iPhone:</strong> press Play on the native audio control below. This test does not need JavaScript or any flower buttons. / <span lang="ar" dir="rtl">اضغط زر التشغيل للاستماع إلى كلمة إنجليزية.</span></p>
+<div class="audioSample">
+<div><strong>💍 ring — خاتم</strong><audio controls preload="none" aria-label="Play English word ring"><source src="./audio/review-english/ring.mp3" type="audio/mpeg">Audio is not supported.</audio></div>
+<div><strong>🎤 sing — يغنّي</strong><audio controls preload="none" aria-label="Play English word sing"><source src="./audio/review-english/sing.mp3" type="audio/mpeg">Audio is not supported.</audio></div>
+</div>
+<p class="muted">These are provisional synthetic English whole-word clips for adult review, not finalized child voices or validated phoneme recordings. If the players are silent in ChatGPT's in-app viewer, copy this page's address into the standalone <strong>Safari</strong> app and increase media volume.</p>
+<div class="next"><a href="./iphone-audio-check.html">▶ Open the simple sound check for all 16 English words<span>No interactive script or questions required. Includes direct MP3 links for troubleshooting.</span></a></div>
+</section>
 <section class="panel" aria-labelledby="how">
 <h2 id="how">How to begin / كيف تبدأ</h2>
 <ol class="steps">
