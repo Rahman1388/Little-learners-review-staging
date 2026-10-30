@@ -111,6 +111,13 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - No arbitrary percentage of the complete six-grade product or guaranteed launch date is given. This is an adult project-status snapshot, not child-facing content or official Qatar approval.
 - Production Academy was not changed.
 
+## 30 October 2026 — Sound-first iPhone review entry point and simulated interaction recheck
+- The project owner's earlier iPhone screenshot and feedback reported no audible phonics and flower/stage actions appearing unresponsive. This remains an **open real-device issue until retested**, not an approved fix.
+- Confirmed the adult staging repository contains sixteen English MP3 practice files plus the separate no-JavaScript `iphone-audio-check.html` with native Play controls for each word. These are short provisional synthetic whole-word recordings, **not** licensed professionally validated child phoneme lessons or Arabic recordings.
+- Promoted two native Play controls (`ring`, `sing`) and a highly visible 16-word sound-check link onto the canonical `index.html` review homepage. This helps isolate in-app browser media issues from phonics quiz/interaction issues.
+- Rechecked live repository script/HTML structure and executed a simulated DOM check of eight flower selections, matching and build-quiz completion, word-specific English audio button invocation, and the sound-test button. Simulations passed, but physical iPhone Safari playback, Bluetooth routing, embedded browser behavior, Arabic voice and VoiceOver **remain unverified**.
+- Do not change the main Academy production branch or claim the voice problem is resolved solely from code/tests.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
