@@ -24,6 +24,7 @@ The staging word recordings were technically inspected one by one: all sixteen M
 
 - [All 16 words — adult audio clarity review](audio-clarity-review.html): native playback, clear/unclear/silent/wrong word ratings, optional experimental iPhone English device voice comparison, and copyable review notes. No storage or server submission.
 - [Detailed measurements and replacement guidance](AUDIO-QUALITY-AUDIT-2026-10-30.md).
+- [16-word replacement recording script, pronunciation targets and acceptance checklist](AUDIO-REPLACEMENT-PROTOCOL-2026-10-30.md).
 - Existing audio files have **not** been upscaled/re-encoded or falsely described as child/native speaker recordings. Original Academy production and previously approved voice choices have not been modified.
 
 ## Development roadmap (30 October 2026)
