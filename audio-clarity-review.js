@@ -27,6 +27,25 @@
   const word=card.dataset.word;
   const audio=card.querySelector("audio");
   audio.addEventListener("playing",()=>{if(playing&&playing!==audio)playing.pause();playing=audio;});
+  card.querySelector(".tryDevice").addEventListener("click",()=>{
+   const status=card.querySelector(".speechFeedback");
+   if(!("speechSynthesis" in window)||typeof SpeechSynthesisUtterance!=="function"){
+    status.textContent="Device speech is not available. Use Safari's native recording player.";return;
+   }
+   try{
+    if(playing)playing.pause();
+    window.speechSynthesis.cancel();
+    const utterance=new SpeechSynthesisUtterance(word);
+    utterance.lang="en-GB";
+    utterance.rate=0.82;
+    utterance.volume=1;
+    utterance.onstart=()=>{status.textContent="Playing device voice for "+word+" (experimental).";};
+    utterance.onend=()=>{status.textContent="Device voice finished. Compare clarity with MP3 above.";};
+    utterance.onerror=()=>{status.textContent="Device voice unavailable here. Try Safari.";};
+    status.textContent="Trying local device voice (not pronunciation-approved).";
+    window.speechSynthesis.speak(utterance);
+   }catch(_){status.textContent="Device voice unavailable. Use the original audio player.";}
+  });
   audio.addEventListener("error",()=>{document.getElementById("copyStatus").textContent="A clip failed to load. Mark that word Silent if appropriate, and mention the loading error in notes.";});
   card.querySelectorAll("button[data-rating]").forEach(btn=>btn.addEventListener("click",()=>{
    scores.set(word,btn.dataset.rating);
