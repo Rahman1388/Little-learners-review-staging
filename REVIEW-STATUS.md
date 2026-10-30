@@ -95,6 +95,15 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - Simulated test: all eight flower selections updated both native audio sources; all eight Match/Build quiz flows passed; the garden and word speaker calls linked to the expected fixed English MP3 paths; the Arabic TTS path remained optional. All JS-requested HTML IDs were present.
 - **Still pending:** actual iPhone Safari and embedded webview playback, volume, touch and VoiceOver testing; native Arabic linguistic verification and teacher review. Do not claim the owner's problem is fixed until confirmed by an iPhone test. The main Academy is unchanged.
 
+## 30 October 2026 — Single starting point / consolidated review homepage
+- User reported confusion about several updated Academy links and asked to merge the latest so they know where to start. Also previously reported no sound and difficulty tapping phonics on an iPhone in-app viewer.
+- Rebuilt the **staging index.html** as a clear one-entry adult review hub. The sole primary action **START LEARNING — Latest Version** opens the existing combined `picture-word-explorer.html` (eight-family Word Garden).
+- The next learning step links to the five-module `grade2-four-skills.html`; teacher/parent review links are grouped separately. Earlier five-word and seven-stage prototypes are **preserved but hidden under an optional Previous experiments section**. The existing iPhone sound-check page remains accessible.
+- The latest Explorer navigation points to Academy Start and next Grade 2 modules rather than to an older competing demo.
+- Confirmed 16 synthetic English MP3 files in the staging repo; checked JS syntax, linked HTML controls and simulated all eight Garden quiz paths, native-audio tap calls, answer gates, flower progress and navigation. **This does not confirm real iPhone sound or physical tap behavior**, which need owner verification in Safari.
+- Updated `START-HERE.md` and `README.md` to make the canonical review URL explicit.
+- **No source Academy production code was merged.** Only the separately approved public adult staging site was consolidated. Child-facing launch still requires explicit owner approval, teacher review, fluent Arabic review and actual device QA.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
