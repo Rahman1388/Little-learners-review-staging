@@ -104,6 +104,13 @@ Added `teacher-quality-checklist.html` to the separate GitHub Pages staging repo
 - Updated `START-HERE.md` and `README.md` to make the canonical review URL explicit.
 - **No source Academy production code was merged.** Only the separately approved public adult staging site was consolidated. Child-facing launch still requires explicit owner approval, teacher review, fluent Arabic review and actual device QA.
 
+## 30 October 2026 — Adult-facing project roadmap published
+- Created `project-roadmap.html` and linked it from the staging review homepage; updated the manifest and README.
+- The page separates working staging infrastructure, Grade 2 draft content, eight-family/16-word interactive samples, and uploaded synthetic English MP3 clips from **unverified** real iPhone sound, fluent Arabic, Grade 2 teacher approval, accessibility, and future commercial/mobile launch requirements.
+- It explicitly identifies substantial unfinished Grade 1, 3, 4, 5 and 6 curriculum development as well as parent controls, child privacy, professional audio, brand/legal and app-store packaging.
+- No arbitrary percentage of the complete six-grade product or guaranteed launch date is given. This is an adult project-status snapshot, not child-facing content or official Qatar approval.
+- Production Academy was not changed.
+
 ## Outstanding gates
 - Teacher approval of Grade 2 activities and sample answers
 - Native fluent Arabic educator review (meaning, spelling, RTL)
