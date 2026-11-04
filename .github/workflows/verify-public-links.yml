@@ -1,0 +1,50 @@
+name: Verify public Academy review links
+
+on:
+  push:
+    paths:
+      - ".github/workflows/verify-public-links.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-public-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Check exact deployed URLs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          check() {
+            local label="$1" url="$2" phrase="$3"
+            local body status
+            body="$(mktemp)"
+            echo "Checking ${label}: ${url}"
+            status="$(curl --location --silent --show-error --retry 3 --retry-all-errors --retry-delay 5 --connect-timeout 10 --max-time 30 --output "$body" --write-out '%{http_code}' "$url")"
+            echo "Result for ${label}: HTTP ${status}"
+            if [ "$status" != "200" ]; then
+              echo "::error::${label} returned HTTP ${status}"
+              cat "$body" | head -c 350 || true
+              rm -f "$body"
+              exit 1
+            fi
+            if ! grep -Fq "$phrase" "$body"; then
+              echo "::error::${label} returned HTTP 200 but expected content is missing"
+              rm -f "$body"
+              exit 1
+            fi
+            rm -f "$body"
+            echo "PASS: ${label}"
+          }
+
+          check "Main Academy homepage" "https://rahman1388.github.io/little-learners-academy/" "Little Learners Academy"
+          check "Review staging homepage" "https://rahman1388.github.io/Little-learners-review-staging/" "Little Learning Academy Review"
+          check "Visual Learning Garden" "https://rahman1388.github.io/Little-learners-review-staging/visual-learning-garden.html" "Visual Learning Garden"
+          check "Review learning JavaScript" "https://rahman1388.github.io/Little-learners-review-staging/visual-learning-garden.js" "LLA_VISUAL_GARDEN"
+          check "Review learning data" "https://rahman1388.github.io/Little-learners-review-staging/visual-learning-garden-data.js" "LLA_VISUAL_GARDEN"
+          check "Review learning stylesheet" "https://rahman1388.github.io/Little-learners-review-staging/visual-learning-garden.css" "conceptWeb"
+          check "Curriculum review desk" "https://rahman1388.github.io/Little-learners-review-staging/review/curriculum-review-desk.html" "Curriculum Evidence & Expert Review Desk"
