@@ -25,3 +25,25 @@ jobs:
           node --check scripts/check-staging-release-gates.cjs
       - name: Verify files and preserve quality HOLD
         run: node scripts/check-staging-release-gates.cjs
+      - name: Verify published app and review links with HTTP GET
+        shell: bash
+        run: |
+          set -euo pipefail
+          check() {
+            url="$1"
+            expected="$2"
+            body="$(mktemp)"
+            echo "Checking: $url"
+            status="$(curl --location --silent --show-error --retry 3 --retry-all-errors --retry-delay 4 --connect-timeout 8 --max-time 30 --output "$body" --write-out '%{http_code}' "$url")" || { echo "::error::Could not connect to $url"; exit 1; }
+            echo "HTTP $status"
+            [ "$status" = "200" ] || { echo "::error::HTTP $status for $url"; exit 1; }
+            grep -Fq "$expected" "$body" || { echo "::error::Page content check failed: $url"; exit 1; }
+            rm -f "$body"
+          }
+          check "https://rahman1388.github.io/little-learners-academy/" "Little Learners Academy"
+          check "https://rahman1388.github.io/Little-learners-review-staging/" "Little Learning Academy Review"
+          check "https://rahman1388.github.io/Little-learners-review-staging/visual-learning-garden.html" "Visual Learning Garden"
+          check "https://rahman1388.github.io/Little-learners-review-staging/visual-learning-garden.js" "LLA_VISUAL_GARDEN"
+          check "https://rahman1388.github.io/Little-learners-review-staging/visual-learning-garden-data.js" "LLA_VISUAL_GARDEN"
+          check "https://rahman1388.github.io/Little-learners-review-staging/visual-learning-garden.css" "conceptWeb"
+          check "https://rahman1388.github.io/Little-learners-review-staging/review/curriculum-review-desk.html" "Curriculum Evidence & Expert Review Desk"
